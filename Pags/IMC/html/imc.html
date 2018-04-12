@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IMC</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../css/stilos.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/scriptimc.js"></script>
+
+</head>
+<body>
+  <center><img src="../imagens/share.png" class="img-fluid" alt="Responsive image"></center>
+    <br><br><br>
+    <!-- <div>
+        <img src="../imagens/share.png" alt="Logo" style="size: "><br>
+    </div> -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <!-- form IMC -->
+              <div class="col">
+                    <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="../imagens/imc.png" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title">Calcule Seu IMC</h5>
+                              <p class="card-text">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput">Peso</label>
+                                        <input type="text" class="form-control" id="peso" placeholder="Peso" required autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput2">Altura</label>
+                                        <input type="text" class="form-control" id="altura" placeholder="Altura" required>
+                                    </div>
+                                    <div class="checkbox">	
+                                        <label>	
+                                            <input	id="checwom" type="radio"	value="mulher"	name="spam">	
+                                                        Mulher	
+                                        </label>
+                                        <label>	
+                                            <input	id="checmen" type="radio"	value="Homem"	name="spam"	checked>                                            	
+                                                            Homem	
+                                        </label>	
+                                    </div>
+                                    <div> 
+                                        <label for="formGroupExampleInput2" id="result-imc"></label>
+                                    </div>
+                                </form>
+                              </p>
+                              <a id="calc" class="btn btn-primary" style="color: white">Calcular</a>
+                            </div>
+                    </div>
+              </div>
+              <!-- Classificação --> 
+              <div class="col">
+                    <div id="tab-hom">
+                      <center><h3 id="name">Homem</h3></center>
+                    <!-- class="table table-striped table-dark" -->
+                    <table id="table" class="table table-striped table-DodgerBlue">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">IMC</th>
+                                <th scope="col">Classificação</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr id="lin-1">
+                                <th scope="row">1</th>
+                                <td> < 18.5</td>
+                                <td>Abaixo do Peso</td>
+                                <td id="1"></td>
+                              </tr>
+                              <tr id="lin-2">
+                                <th scope="row">2</th>
+                                <td>18.5–24.9</td>
+                                <td>Peso Normal</td>
+                                <td id="2"></td>
+                              </tr>
+                              <tr id="lin-3">
+                                <th scope="row">3</th>
+                                <td>25.0-29.9</td>
+                                <td>Sobrepeso</td>
+                                <td id="3"></td>
+                              </tr>
+                              <tr id="lin-4">
+                                <th scope="row">4</th>
+                                <td>30.0–34.9</td>
+                                <td>Obesidade grau I</td>
+                                <td id="4"></td>
+                              </tr>
+                              <tr id="lin-5">
+                                <th scope="row">5</th>
+                                <td>35.0-39.9</td>
+                                <td>Obesidade grau II</td>
+                                <td id="5"></td>
+                              </tr>
+                              <tr id="lin-6">
+                                <th scope="row">6</th>
+                                <td>>= 40.0</td>
+                                <td>Obesidade grau III</td>
+                                <td id="6"></td>
+                              </tr>
+                            </tbody>
+                    </table>
+                  </div>
+                    <!-- <div>
+                      <center><h3>Mulher</h3></center>
+                    </div>
+                    <table class="table table-striped table-dark table-pink">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">IMC</th>
+                          <th scope="col">Classificação</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="deepPink" id="lin-1" >
+                          <th scope="row">1</th>
+                          <td> < 18.5</td>
+                          <td>Abaixo do Peso</td>
+                          <td id="1"></td>
+                        </tr>
+                        <tr class="deepPink"id="lin-2">
+                          <th scope="row">2</th>
+                          <td>18.5–24.9</td>
+                          <td>Peso Normal</td>
+                          <td id="2"></td>
+                        </tr>
+                        <tr id="lin-3">
+                          <th scope="row">3</th>
+                          <td>25.0-29.9</td>
+                          <td>Sobrepeso</td>
+                          <td id="3"></td>
+                        </tr>
+                        <tr id="lin-4">
+                          <th scope="row">4</th>
+                          <td>30.0–34.9</td>
+                          <td>Obesidade grau I</td>
+                          <td id="4"></td>
+                        </tr>
+                        <tr id="lin-5">
+                          <th scope="row">5</th>
+                          <td>35.0-39.9</td>
+                          <td>Obesidade grau II</td>
+                          <td id="5"></td>
+                        </tr>
+                        <tr id="lin-6">
+                          <th scope="row">6</th>
+                          <td>>= 40.0</td>
+                          <td>Obesidade grau III</td>
+                          <td id="6"></td>
+                        </tr>
+                      </tbody>
+              </table> -->
+              </div>
+              <div class="w-100"></div>
+              <div class="col"></div>
+              <div class="col"></div> 
+            </div>
+          </div> 
+    </div>
+<!-- tratar todos os casos de stilo da tabela, sempre voltando ao normal a cada calculo -->
+<script>
+    $('#calc').click(function () {
+    var numero1 = $('#peso').val();
+    var numero2 = $('#altura').val();
+    var resultado = numero1/(numero2 * numero2);
+    for (let index = 1; index < 7; index++) {
+       $('#lin-'+index).addClass("branco");
+       $('#'+index).text(" ");
+     }
+     if($('#checmen').prop('checked')){
+      if(resultado < 18.5){
+        $('#lin-1').removeClass("branco");
+       $('#lin-1').addClass("red");
+       $('#1').text("Você");
+       //add imagem
+      //  $('#1').prepend('<img src="../imagens/magro.png" alt="magropng">');
+    }else{
+      if(resultado >= 18.5 && resultado <= 24.9){
+        $('#lin-2').removeClass("branco");
+         $('#lin-2').addClass("red");
+         $('#2').text("Você");
+      }else{
+        if(resultado >= 25 && resultado <= 29.9){
+          $('#lin-3').removeClass("branco");
+          $('#lin-3').addClass("red");
+          $('#3').text("Você");
+        }else{
+          if(resultado >= 30 && resultado <= 34.9){
+            $('#lin-4').removeClass("branco");
+            $('#lin-4').addClass("red");
+            $('#4').text("Você");
+          }else{
+            if(resultado >= 35 && resultado <= 39.9){
+              $('#lin-5').removeClass("branco");
+              $('#lin-5').addClass("red");
+              $('#5').text("Você");
+            }else{
+              $('#lin-6').removeClass("branco");
+              $('#lin-6').addClass("red");
+              $('#6').text("Você");
+            }
+          }
+        }
+      }
+    } 
+     }
+    
+    $('#result-imc').text(resultado);
+});  
+$('#checmen').click( function(){
+  $('#name').text("Homem");
+  $('#table').removeClass("table table-striped table-SkyBlue");
+  $('#table').addClass("table table-striped table-DodgerBlue");
+});
+$('#checwom').click( function(){
+  $('#name').text("Mulher");
+  $('#table').removeClass("table table-striped table-DodgerBlue");
+  $('#table').addClass("table table-striped table-SkyBlue");
+});
+</script>
+</body>
+</html>

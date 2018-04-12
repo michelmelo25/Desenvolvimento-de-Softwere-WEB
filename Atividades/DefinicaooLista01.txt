@@ -1,0 +1,14 @@
+Definição lista 01
+
+Visitem o link da disciplina: https://sites.google.com/site/ufcregis/home/2017-1/desenvolvimento-de-software-para-web
+Na seção Listas de Exercícios, vocês devem ver a definição da lista 01. A entrega é próxima segunda, 12/Março, pelo sippa.
+
+Lista de Exercícios 01  (prazo final para entrega: 20/03/2017 - segunda-feira até às 23:59)
+Crie uma página HTML que use o texto do seguinte documento. 
+Link para o documento: https://www.dropbox.com/s/6eh7hn3y5z4jjtp/sobre.txt
+
+a) A página HTML criada deve conter pelo menos 5 elementos em bloco e 5 elementos em linha.
+b) A página HTML deve conter pelo menos uma imagem relacionada ao seu conteúdo (use uma imagem qualquer escolhida por você).
+Crie uma página HTML que contenha uma tabela com os índices de inflação usados no Brasil. 
+Obs: Tais índices atualizados podem ser consultados em: https://economia.uol.com.br/cotacoes/
+Crie uma página HTML com um formulário para cadastro de dados pessoais como: CPF, Nome, Telefone, Email e Data de Nascimento.

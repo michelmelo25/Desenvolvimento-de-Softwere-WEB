@@ -1,0 +1,9 @@
+Exercício 02 - Desenvolvimento Web
+
+Prazo final para entrega: 08/04/2017 - domingo)
+
+Use CSS para estilizar as páginas criadas por você na Lista de Exercícios 01.
+Crie um único arquivo CSS externo a ser usado e compartilhado pelas 3 páginas criadas da Lista 01.
+Todas as páginas devem ter um cabeçalho, um container geral com seu conteúdo e um rodapé.
+Use os conteúdos do arquivo caelum-arquivos-curso-web.zip para criar uma página HTML semelhante à página home sugerida na apostila WD-43 da Caelum.
+OBS: A apostila WD-43 da Caelum mostra o passo a passo de como construir tal página.
