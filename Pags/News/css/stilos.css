@@ -49,4 +49,8 @@ body.dark {background: black;
         color: white;
         background-color: #1E90FF
 }
-        /*  */
+
+.fonte{
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 18px;
+}
