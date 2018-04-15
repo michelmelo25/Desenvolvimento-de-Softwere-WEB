@@ -16,10 +16,9 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Navbar</a>
-        <a class="navbar-brand" href="#">Home</a>
-        <a class="navbar-brand" href="#">Link</a>
-        <a class="navbar-brand" href="#">Disabled</a>
+        <a class="navbar-brand" href="model.html">Home</a>
+        <a class="navbar-brand" href="#">Sobre</a>
+        <a class="navbar-brand" href="#">FAQ</a>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -31,7 +30,7 @@
             <div class="col-sm-2">
                 <img src="../imagens/claiton-day2.png" alt="..." class="img-thumbnail">
             </div>
-            <!--  -->
+            <!--  NOTICIA 1-->
             <div class="col">
                 <div class="card border-success mb-3" >
                     <div class="card-header">O Doutrinador</div>
@@ -42,18 +41,21 @@
                         <p class="card-text">O Doutrinador vem aí: conheça o vigilante 
                                 que será o destaque do ano no cinema brasileiro. Ninguém 
                                 fica de fora da vingança do anti-herói</p>
-                                <button align="right" class="btn btn-outline-success my-2 my-sm-0" id="bt1">Mais Noticias</button>
-
+                                <button align="right" class="btn btn-outline-success my-2 my-sm-0" id="bt1">Continuar Lendo</button>
                     </div>
                 </div>
             </div>
+            <!-- NOTICIA 2 -->
             <div class="col">
                 <div class="card border-success mb-3">
-                    <div class="card-header">Header</div>
-                    <img class="card-img-top" src="../imagens/download.jpeg" alt="Card image cap">
+                    <div class="card-header">Ataque Coordenado a Síriar</div>
+                    <img class="card-img-top" src="../imagens/misseis siria.png" alt="Card image cap">
                     <div class="card-body text-success">
-                        <h5 class="card-title">Success card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Conheça os mésseis lançados pela coalizão a Síria</h5>
+                        <p class="card-text">Estados Unidos, Reino Unido e França realizaram bombardeio na 
+                            madrugada da sexta-feira (13). Ação partiu de navios e caças, com mísseis europeus 
+                            e dos EUA guiados por GPS; veja infográfico.</p>
+                        <button align="right" class="btn btn-outline-success my-2 my-sm-0" id="bt2">Continuar Lendo</button>
                     </div>
                 </div>
             </div>
@@ -61,12 +63,14 @@
         <div class="row">
             <div class="col-sm-2"><h1>ANUNCIE AQUI</h1></div>
             <div class="col">
+                <!-- NOTICIA 3 -->
                 <div class="card border-success mb-3">
-                    <div class="card-header">Header</div>
-                    <img class="card-img-top" src="../imagens/download.jpeg" alt="Card image cap">
+                    <div class="card-header">Chuvas</div>
+                    <img class="card-img-top" src="../imagens/mauriti.jpg" alt="Card image cap">
                     <div class="card-body text-success">
-                        <h5 class="card-title">Success card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Chuva de 92 mm em Mauriti no Ceará alaga cidade e causa desabamentoe</h5>
+                        <p class="card-text">Funceme prevê mais chuvas para o restante do mês de abril.</p>
+                        <button align="right" class="btn btn-outline-success my-2 my-sm-0" id="bt3">Continuar Lendo</button>
                     </div>
                 </div>
             </div>
@@ -175,6 +179,14 @@
      <script>
         $('#bt1').click(function(){
             var novaURL = "../html/ODoutrinador.html";
+            $(window.document.location).attr('href',novaURL);
+        });
+        $('#bt2').click(function(){
+            var novaURL = "../html/AtaqueSiria.html";
+            $(window.document.location).attr('href',novaURL);
+        });
+        $('#bt3').click(function(){
+            var novaURL = "../html/Mauriti.html";
             $(window.document.location).attr('href',novaURL);
         });
      </script>  
