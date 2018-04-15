@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabajara</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/stilos.css">
+</head>
+<body class="fonte" >
+    <br>
+    <div class="container" >
+        <div class="row" style="text-align: center">
+            <h3>Reajuste Salarial dos Funcionarios das Organizações Tabajara</h3>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-5">
+                <img src="../imagens/Taba2009.png" class="rounded float-left" alt="tabajara_logo" width="80%">
+            </div>
+            <div class="col-sm">
+               <form>
+                    <table>
+                    <tbody>
+                        <tr>
+                            <td><p>Informe Seu Salario Atual:</p></td>
+                            <td> <input id="salini" type="number" class="form-control" id="formGroupExampleInput" placeholder="Salario"></td>
+                            <td><button id="botao" type="button" class="btn btn-outline-success" onclick="reajustar(this.form)">Reajustar</button></td>
+                        </tr>
+                        <tr>
+                            <td><p>Salario Antes do Reajuste:</p></td>
+                            <td><p><input id="salant" class="form-control" type="text" placeholder="Salario Antes do Reajuste" readonly></p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Percentual do Almento Aplicado:</p></td>
+                            <td><p><input id="perc" class="form-control" type="text" placeholder="Percentual do Almento Aplicado" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><p>Valor do Almento:</p></td>
+                            <td><p><input id="valalm" class="form-control" type="text" placeholder="Valor do Almento" readonly></p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Novo Salario, Após o Reajuste:</p></td>
+                            <td><p><input id="newsal" class="form-control" type="text" placeholder="Novo Salario, Após o Reajuste" readonly></p></td>
+                    </tbody>
+                </table>
+               </form>
+            </div>
+        </div>
+    </div>  
+    <br><br><br><br><br><br><br><br><br>
+</body>
+<footer class="rodape" style="text-align: right; background-color: black">
+<br>
+Copyright © Michel de Melo Vieira - Web, 2018
+ <br><br>
+</footer>
+<script>
+function reajustar(form){
+    var salarioIn = form.salini.value;
+    var Almento = 0;
+    var salarioFin = 0;
+    if(salarioIn <= 280){
+        Almento = salarioIn * 0.2;
+        salarioFin = parseFloat(salarioIn) + parseFloat(Almento);
+        form.salant.value = "R$ " + salarioIn + "";
+        form.perc.value = "20%" ;
+        form.valalm.value = "R$" + Almento + "";
+        form.newsal.value = "R$ " + salarioFin + "";
+    }else{
+        if(salarioIn > 280 && salarioIn <= 700){
+            Almento = salarioIn * 0.15;
+            salarioFin = parseFloat(salarioIn) + parseFloat(Almento);
+            form.salant.value = "R $" + salarioIn + "";
+            form.perc.value = "15%";
+            form.valalm.value = "R$" + Almento + "";
+            form.newsal.value = "R$ " + salarioFin + "";
+        }else{
+            if (salarioIn > 700 && salarioIn <= 1500) {
+                Almento = salarioIn * 0.1;
+                salarioFin = parseFloat(salarioIn) + parseFloat(Almento);
+                form.salant.value = "R$ " + salarioIn + "";
+                form.perc.value = "10%";
+                form.valalm.value = "R$ " + Almento + "";
+                form.newsal.value = "R$ " + salarioFin + "";
+            } else {
+                Almento = salarioIn * 0.05;
+                salarioFin = parseFloat(salarioIn) + parseFloat(Almento);
+                form.salant.value = "R$ " + salarioIn + "";
+                form.perc.value = "5%";
+                form.valalm.value = "R$ " + Almento + "";
+                form.newsal.value = "R$ " + salarioFin + "";
+                
+            }
+        }
+    }
+}
+</script>
+</html>
