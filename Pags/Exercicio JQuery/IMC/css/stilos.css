@@ -1,0 +1,46 @@
+.red {color: red}
+.pretoI{
+        font-style: italic;
+        color: black
+}
+
+.rodape-fund {
+    background-color: white;
+    background-image: url("../imagens/fundo-rodape.png"); 
+    background-repeat: repeat;
+    background-position: center 313px;
+    height: 95%;
+    width: 100%}
+    
+.corpo_fund {background-image: url("../imagens/body-background.png");
+            font-size: 16px ; 
+            font-family: 'Times New Roman', Times, serif}
+
+body.dark {background: black; 
+           color:  white; 
+           font-size: 15px ; 
+           font-family: 'Times New Roman', Times, serif}
+
+.rodape {color: white;
+         font-size: 13px;
+         font-family: 'Times New Roman', Times, serif}
+.hotpink{color: #FF1493;
+        }
+.deepPink{background-color: #FF69B4;
+        }
+.branco{color: white}
+
+.table-pink{
+        color: white;
+        background-color: hotpink;            
+            
+        }
+.table-SkyBlue{
+        color: white;
+        background-color: #00CED1
+}
+.table-DodgerBlue{
+        color: white;
+        background-color: #1E90FF
+}
+        /*  */

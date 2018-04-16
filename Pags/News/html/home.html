@@ -74,9 +74,21 @@
                         <button align="right" class="btn btn-outline-success my-2 my-sm-0" id="bt2">Continuar Lendo</button>
                     </div>
                 </div>
+            </div>  
+        </div>
+        <br>
+        <!-- BOTÃO MAIS NOTICIAS -->
+        <div class="row" id="rowbtm">
+            <div class="col-sm-2"></div>
+            <div class="col">
+                <div align="center">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="btmaisnoticias">Mais Noticias</button>
+                </div>
             </div>
         </div>
-        <div class="row">
+        <!-- ___________________________________________________ -->
+        <br>
+        <div class="row" id="row1">
             <div class="col-sm-2"><h1>ANUNCIE AQUI</h1></div>
             <div class="col">
                 <!-- NOTICIA 3 -->
@@ -114,8 +126,19 @@
                 </div>
             </div>
         </div>
+        <!-- BOTÃO 2 MAIS/ 1 MENOS NOTICIAS -->
+        <div class="row" id="rowbtm2">
+            <div class="col-sm-2"></div>
+            <div class="col">
+                <div align="center">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="btmenosnoticias">Menos Noticias</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="bt2maisnoticias">Mais Noticias</button>
+                </div>
+            </div>
+        </div>
+        <!-- ___________________________________________________ -->
 
-        <div class="row">
+        <div class="row" id="row2">
             <div class="col-sm-2">
                 <img src="../imagens/claiton-day2.png" alt="..." class="img-thumbnail">
             </div>
@@ -125,7 +148,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="row3">
             <div class="col-sm-2">
                 <img src="../imagens/claiton-day2.png" alt="..." class="img-thumbnail">
             </div>
@@ -153,7 +176,18 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+                <!-- BOTÃO 3 MAIS/ 2 MENOS NOTICIAS -->
+        <div class="row" id="rowbtm3">
+            <div class="col-sm-2"></div>
+            <div class="col">
+                <div align="center">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="bt2menosnoticias">Menos Noticias</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="bt3maisnoticias">Mais Noticias</button>
+                </div>
+            </div>
+        </div>
+        <!-- ___________________________________________________ -->
+        <div class="row" id="row4">
             <div class="col-sm-2"><h1>ANUNCIE AQUI</h1></div>
             <div class="col">
                 <div class="card border-success mb-3">
@@ -190,7 +224,7 @@
             </div>
         </div>
         
-        <div class="row">
+        <div class="row" id="row5">
             <div class="col-sm-2">
                 <img src="../imagens/claiton-day2.png" alt="..." class="img-thumbnail">
             </div>
@@ -199,6 +233,17 @@
                 <center><img src="../imagens/logo-ufc-qxd.png" class="img-fluid" alt="Responsive image"></center>
             </div>
         </div>
+        <!-- BOTÃO 3 MENOS NOTICIAS -->
+        <div class="row" id="rowbmm2">
+            <div class="col-sm-2"></div>
+            <div class="col">
+                <div align="center">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="bt3menosnoticias">Menos Noticias</button>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <!-- ___________________________________________________ -->
      </div> 
      <script>
         $('#bt1').click(function(){
@@ -217,6 +262,55 @@
             var novaURL = "../html/Claiton-O-Super-Cao.html";
             $(window.document.location).attr('href',novaURL);
         });
+        $(Document).ready(function(){
+            $('#row1').hide();
+            $('#row2').hide();
+            $('#row3').hide();
+            $('#row4').hide();
+            $('#row5').hide();
+            $('#rowbtm2').hide();
+            $('#rowbtm3').hide();
+            $('#rowbmm2').hide()
+        });
+        // BOTOES MAIS NOTICIAS
+        $('#btmaisnoticias').click(function(){
+            $('#row1').show();
+            $('#rowbtm').hide();
+            $('#rowbtm2').show()
+        });
+        $('#bt2maisnoticias').click(function(){
+            $('#row2').show();
+            $('#row3').show();
+            $('#rowbtm2').hide();
+            $('#rowbtm3').show()
+        });
+        $('#bt3maisnoticias').click(function(){
+            $('#row4').show();
+            $('#row5').show();
+            $('#rowbtm3').hide();
+            $('#rowbmm2').show()
+        });
+        // BOTOES MENOS NOTICIA
+        $('#btmenosnoticias').click(function(){
+            $('#row1').hide();
+            $('#rowbtm2').hide();
+            $('#rowbtm').show();
+        });
+        $('#bt2menosnoticias').click(function(){
+            $('#row2').hide();
+            $('#row3').hide();
+            $('#rowbtm3').hide();
+            $('#rowbmm2').hide();
+            $('#rowbtm2').show();
+            $('#rowbmm').show();
+        });
+        $('#bt3menosnoticias').click(function(){
+            $('#row4').hide();
+            $('#row5').hide();
+            $('#rowbtm3').show();
+            $('#rowbmm2').hide();
+        });
+        
      </script>  
 </body>
 </html>
