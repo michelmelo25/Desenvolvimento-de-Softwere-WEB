@@ -17,5 +17,12 @@ body.dark {background: black;
            font-family: 'Times New Roman', Times, serif}
 
 .rodape {color: white;
-         font-size: 28px;
          font-family: 'Times New Roman', Times, serif}
+
+.linhaHover{
+            background-color: silver;
+            }
+.linhaSelecionada{
+                background-color:#7CFC00;
+                font-weight:bold;
+                }

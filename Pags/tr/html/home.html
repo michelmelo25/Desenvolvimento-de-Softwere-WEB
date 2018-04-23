@@ -12,28 +12,31 @@
     <script src="../js/bootstrap.js"></script>
 </head>
 <body class="corpo_fund">
-    <div class="rodape-fund rodape">
-        era para ter alguma coisa aqui mas nao deu certo! (nao sei o que colocar -_-)
-    </div>
+    <div class="jumbotron; rodape-fund rodape">
+		<div class="container" style="text-align: center">
+			<h1 id="h1">Customizando as Questões</h1>
+            <p id="p">Customização das questões 2 e 3 do Trabalho 1</p>	
+		</div>
+	</div>
     <br><br><br>
     <div>   
         <p>
-            <button id="bthome" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#home" aria-expanded="false" aria-controls="collapseExample">
+            <button id="bthome" class="btn btn-dark" type="button" data-toggle="collapse" data-target="#home" aria-expanded="false" aria-controls="collapseExample">
                 HOME
             </button>
-            <button id="btq2" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#q2" aria-expanded="false" aria-controls="collapseExample">
+            <button id="btq2" class="btn btn-dark" type="button" data-toggle="collapse" data-target="#q2" aria-expanded="false" aria-controls="collapseExample">
                 Questao 2
             </button>
-            <button id="btq3" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#q3" aria-expanded="false" aria-controls="collapseExample">
+            <button id="btq3" class="btn btn-dark" type="button" data-toggle="collapse" data-target="#q3" aria-expanded="false" aria-controls="collapseExample">
                 Questão 3
             </button>
         </p>
         <div class="collapse" id="home">
-            <div class="card card-body">
-          Olha como ficou as questoes 2 e 3!
+            <div class="card card-body; rodape-fund rodape">
+                Parte 3 do exercicio 3, integração de paginas, tabela de inflação e formulario de cadastro!
             </div>
         </div>
-        <div class="collapse" id="q2">
+        <div class="collapse;" id="q2">
             <div class="card card-body">
                 <div align="center">
                     <h4>Indices de Inflacao</h4>
@@ -74,9 +77,9 @@
         <div class="collapse" id="q3">
             <div class="card card-body">
                <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-    Cadastre-se
-  </button>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalLong">
+                    Cadastre-se
+                </button>
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -157,8 +160,8 @@
             </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">Cadastrar</button>
         </div>
       </div>
     </div>
@@ -170,21 +173,30 @@
 <script>
     $(Document).ready(function (){
         $('#home').show();
+        $('#q2').hide();
+        $('#q3').hide();
     });
     $('#bthome').click(function (){
+        $('#h1').text("Customizando as Questões");
         $('#home').show();
         $('#q2').hide();
         $('#q3').hide();
     });
     $('#btq2').click(function (){
+        $('#h1').text("Tabela de Inflação");
         $('#home').hide();
         $('#q2').show();
         $('#q3').hide();
     });
     $('#btq3').click(function (){
+        $('#h1').text("Formulario de Cadastro");
         $('#home').hide();
         $('#q2').hide();
         $('#q3').show();
     });
+    $("tr").hover(
+        function(){$(this).addClass("linhaHover");},
+        function(){$(this).removeClass("linhaHover");},
+    );
 </script>
 </html>
