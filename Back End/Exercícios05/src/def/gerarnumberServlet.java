@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@WebServlet(name = "gerarnumberServlet")
+@WebServlet("/gerarnumberServlet")
 public class gerarnumberServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -35,7 +35,7 @@ public class gerarnumberServlet extends HttpServlet {
         for (Integer valor : resultado) {
                 out.println(valor + " ");
         }
-        
+
         out.println("</body>");
         out.println("</html>");
     }
