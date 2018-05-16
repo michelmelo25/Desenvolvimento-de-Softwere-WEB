@@ -1,26 +1,82 @@
-.center {
-    text-align: center
+body {
+    margin: 0;
+    padding: 0;
+    font: 14px 'Trebuchet MS', Arial;
 }
 
-.direita {
-    text-align: right
+a {
+    color: #000;
+    text-decoration: none;
 }
 
-.esquerda {
-    text-align: left
+nav {
+    background: url('../imagens/imga.jpg') center right;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
-.row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: 0px;
+ul {
+    list-style: none;
 }
 
-.col-sm-2 {
-    padding-left: 0%;
-    padding-right: 10%
+ul li{    
+    display: inline;
+    /* top, right, bottom, left */
+    padding: 18px 78px 18px 78px;
+    background: rgba(216, 26, 162, 0.885);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+ul li:hover > a {
+    color: #f00;
+}
+
+.ad{
+    position: absolute;
+    margin-right: 80%;
+    padding-left: 15px;
+    background: #f00;
+    text-align: center;
+}
+
+.col-dir{
+    position: absolute;
+    margin-left: 74.9%;
+    padding-top: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+    background: #f00;
+    text-align: center;
+    width: 17rem;
+    height: 19rem;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.col-cent{
+    position: absolute;
+    margin-left: 49.8%;
+    margin-right: 25.1%;
+    padding-top: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+    background: #f00;
+    text-align: center;
+    width: 17rem;
+    height: 19rem;
+    border: 2px solid rgb(0, 0, 0);
+}
+.col-esq{
+    position: absolute;
+    margin-left: 24.8%;
+    margin-right: 49.7%;
+    padding-top: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+    background: #f00;
+    text-align: center;
+    width: 17rem;
+    height: 19rem;
+    border: 2px solid rgb(0, 0, 0);
 }
