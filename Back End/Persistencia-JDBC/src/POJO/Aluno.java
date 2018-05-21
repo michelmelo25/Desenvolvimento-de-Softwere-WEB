@@ -17,6 +17,10 @@ public class Aluno {
         this.email = email;
     }
 
+    public  Aluno(){
+
+    }
+
     public String getNome() {
         return nome;
     }

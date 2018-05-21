@@ -18,7 +18,7 @@ public class AlunoDAO {
         String sql = "insert into alunos (nome, email, endereco, dataNascimento) values (?, ?, ?, ?)";
 
         try {
-            PreparedStatement stmt = new connection.prepareStatement(sql);
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
             stmt.setString(2, aluno.getEmail());
             stmt.setString(3, aluno.getEndereco());
