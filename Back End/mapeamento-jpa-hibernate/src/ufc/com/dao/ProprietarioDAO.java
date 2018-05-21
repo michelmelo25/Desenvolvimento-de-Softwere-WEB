@@ -1,7 +1,6 @@
 package ufc.com.dao;
 
 import ufc.com.model.Proprietario;
-import ufc.com.model.Veiculo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
