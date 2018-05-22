@@ -2,17 +2,21 @@ body {
     margin: 0;
     padding: 0;
     font: 14px 'Trebuchet MS', Arial;
+    background: url('../imagens/body-bg.png');
+    max-width: 100%;
 }
 
 a {
     color: #000;
     text-decoration: none;
+    max-width: 100%;
 }
 
 nav {
     background: url('../imagens/imga.jpg') center right;
     padding-top: 10px;
     padding-bottom: 20px;
+    max-width: 100%;
 }
 
 ul {
@@ -27,6 +31,7 @@ ul li{
     border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
     font-size: 16px;
+    max-width: 100%;
 }
 
 ul li:hover > a {
@@ -41,42 +46,56 @@ ul li:hover > a {
     text-align: center;
 }
 
-.col-dir{
-    position: absolute;
-    margin-left: 74.9%;
-    padding-top: 5px;
-    padding-left: 2%;
-    padding-right: 2%;
-    background: #f00;
-    text-align: center;
-    width: 17rem;
-    height: 19rem;
-    border: 2px solid rgb(0, 0, 0);
+.menu {
+    width: 25%;
+    float: left;
+    padding: 10px;
 }
 
-.col-cent{
-    position: absolute;
-    margin-left: 49.8%;
-    margin-right: 25.1%;
-    padding-top: 5px;
-    padding-left: 2%;
-    padding-right: 2%;
-    background: #f00;
-    text-align: center;
-    width: 17rem;
-    height: 19rem;
-    border: 2px solid rgb(0, 0, 0);
+.main {
+    width: 75%;
+    float: left;
+    padding: 10px;
 }
-.col-esq{
-    position: absolute;
-    margin-left: 24.8%;
-    margin-right: 49.7%;
-    padding-top: 5px;
-    padding-left: 2%;
-    padding-right: 2%;
-    background: #f00;
-    text-align: center;
-    width: 17rem;
-    height: 19rem;
-    border: 2px solid rgb(0, 0, 0);
+/*  background: rgba(216, 26, 162, 0.707); */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the side navigation */
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Style the content */
+.content {
+    margin-left: 200px;
+    padding-left: 20px;
 }
