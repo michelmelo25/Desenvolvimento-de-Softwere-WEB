@@ -23,12 +23,17 @@ a {
 }
 
 nav {
-    background: url('../imagens/imga.jpg') center;
+    background: url('../imagens/imga.jpg') center right;
     padding-top: 2px;
     padding-bottom: 2px;
     max-width: 100%;
     width: 100%;
     float: right;
+}
+
+@media screen and (max-width:653px) {
+    /* nav {background-image: url('../imagens/imga.jpg') center} */
+    nav {background-position: center}
 }
 
 ul {
@@ -98,8 +103,8 @@ body {
 
 ul.topnav {
     list-style-type: none;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 25%;
+    margin-right: 25%;
     padding: 0;
     overflow: hidden;
     /* background-color: #333; */
