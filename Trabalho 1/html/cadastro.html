@@ -23,7 +23,8 @@
             <li><a href="home.html">Home</a></li>
             <li> <a href="sobre.html">Sobre</a></li>
             <li><a href="cadastro.html">Cadastro</a></li>
-            <li><a href="login.html">Login</a></li>
+            <!-- <li><a href="login.html">Login</a></li> -->
+            <li><a href="produtos.html">Produtos</a></li>
         </ul>
     </div>
 </nav>   
@@ -39,14 +40,14 @@
         <label for="mail">E-mail</label>
         <input class="formulario" type="email" id="mail" name="email" placeholder="exemplo@mail.com">
 
-        <label for="pass">Senha</label>
+        <!-- <label for="pass">Senha</label>
         <input class="formulario" type="password" id="pass" name="senha" placeholder="***********">
 
         <label for="dnasc">Data de Nacimento</label>
         <input class="formulario" type="date" id="dnasc" name="datanacimento" placeholder="Data de Nacimento">
   
         <label for="endereco">Endereço</label>
-        <input class="formulario" type="text" id="ende" name="endereco" placeholder="Endereço">
+        <input class="formulario" type="text" id="ende" name="endereco" placeholder="Endereço"> -->
 
         <label for="telefone">Telefone</label>
         <input class="formulario" type="text" id="tel" name="etelefone" placeholder="(88) 88888-8888">
@@ -54,17 +55,38 @@
         <label for="telefone">Mensagem</label>
         <textarea name="mesenger" id="mensagem" cols="30" rows="10" placeholder="Informe sua Mensagem"></textarea>
 
-        <input type="submit" value="Cadastrar" id="Cadastrar">
+        <input type="submit" value="Enviar" id="Cadastrar">
     </form>
 </dir>
 
+<div id="dialog" title="Sucesso">
+    <p>Sua mensagem foi enviada com sucesso.</p>
+</div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+
 <script>
-    $(document).ready(function () { 
+    $(Document).ready(function () { 
         var $seuCampoTel = $("#tel");
         $seuCampoTel.mask('(00) 00000-0000', {reverse: false});
-    });
+        $("#dialog").hide();
+        
+        // $('#dialog').dialog();
 
+    });
+    $('#Cadastrar').click( function() {
+        if($('#fname').val()){
+            if($('#lname').val()){
+                if($('#mail').val()){
+                    if($('#tel').val()){
+                        if($('#mensagem').val()){
+                            alert("Sua mensagem foi enviada com sucesso.");
+                        }
+                    }
+                }
+            }            
+        } 
+   } );
 </script>
 </body>
 <footer class="rodape">
