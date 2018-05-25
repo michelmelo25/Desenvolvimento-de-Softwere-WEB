@@ -9,8 +9,12 @@
 
     <link rel="stylesheet" href="../css/lojam.css">
 
-    <script src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/cadastro.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- <script src="../js/jquery.js"></script> -->
+    <!-- <script type="text/javascript" src="../js/cadastro.js"></script> -->
     
 </head>
 <body>
@@ -30,7 +34,6 @@
 </nav>   
 <br>
 <dir class="back-form">
-    <form action="#">
         <label for="fname">Nome</label>
         <input class="formulario" type="text" id="fname" name="firstname" placeholder="Seu Nome" title="Informar seu primeiro nome vc deve">
 
@@ -56,40 +59,76 @@
         <textarea name="mesenger" id="mensagem" cols="30" rows="10" placeholder="Informe sua Mensagem" title="Enviar uma mensagem vc deve"></textarea>
 
         <input type="submit" value="Enviar" id="Cadastrar">
-    </form>
 </dir>
 
-<!-- <div id="dialog" title="Sucesso">
-    <p>Sua mensagem foi enviada com sucesso.</p>
-</div> -->
+<div id="acept" title="Sucesso">
+    <p>Seu formulario foi enviado com sucesso.</p>
+</div>
+
+<div id="err" title="Erro">
+    <p>Para enviar o formulario de contato por favor preencha todos os campos..</p>
+</div>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 
 <script>
-    $(Document).ready(function () { 
+    $(document).ready(function () { 
         var $seuCampoTel = $("#tel");
         $seuCampoTel.mask('(00) 00000-0000', {reverse: false});
-        // $("#dialog").hide();
-        
-        // $('#dialog').dialog();
-
     });
 
-    $('#Cadastrar').click( function() {
+        // alert("Para enviar o formulario de contato por favor preencha todos os campos.");
+
+   $( function() {
+    $( "#err" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+      
+    });
+
+     $( "#acept" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+      
+    });
+ 
+    $( "#Cadastrar" ).on( "click", function() {
         if($('#fname').val()){
             if($('#lname').val()){
                 if($('#mail').val()){
                     if($('#tel').val()){
                         if($('#mensagem').val()){
-                            alert("Seu formulario foi enviado com sucesso.");
+                            // alert("Seu formulario foi enviado com sucesso.");   
+                            $( "#acept" ).dialog( "open" );
+                            $('#fname').val('');
+                            $('#lname').val('');
+                            $('#mail').val('');
+                            $('#tel').val('');
+                            $('#mensagem').val('');               
                             return;
                         }
                     }
                 }
             }            
         } 
-        alert("Para enviar o formulario de contato por favor preencha todos os campos.");
-   } );
- 
+      $( "#err" ).dialog( "open" );
+    });
+  } );
+
 </script>
 </body>
 <footer class="rodape">
