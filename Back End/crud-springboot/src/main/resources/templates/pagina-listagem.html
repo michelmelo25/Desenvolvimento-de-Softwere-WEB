@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Listar</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+<table class="table">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Crud Spring</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/inicio">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pessoa/listar">Listar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pessoa/formulario">Formulario</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pessoa: ${todasAsPessoas}">
+        <!-- scope="row"-->
+        <!--<th> scope="row""></th>-->
+        <td th:text="${pessoa.id}"></td>
+        <td th:text="${pessoa.nome}"></td>
+        <td th:text="${pessoa.time}"></td>
+        <td><a th:href="@{/pessoa/excluir/{id}(id = ${pessoa.id})}"><button type="button" class="btn btn-outline-danger">X</button></a></td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>
