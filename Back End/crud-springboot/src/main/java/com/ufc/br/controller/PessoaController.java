@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.jws.WebParam;
@@ -28,12 +30,12 @@ public class PessoaController {
     }
 
     @PostMapping("/pessoa/salvar")
-    public ModelAndView salvar(Pessoa pessoa){
+    public String salvar(Pessoa pessoa, @RequestParam(value= "imagem")MultipartFile imagem){
         //salvar no banco
-        pessoaService.salvar(pessoa);
-        ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
+        pessoaService.salvar(pessoa, imagem);
+//        ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
 //        "formulario"
-        return mv;
+        return "formulario";
     }
 
     @RequestMapping("/pessoa/listar")

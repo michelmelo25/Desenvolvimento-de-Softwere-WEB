@@ -2,8 +2,10 @@ package com.ufc.br.service;
 
 import com.ufc.br.model.Pessoa;
 import com.ufc.br.repository.PessoaRepository;
+import com.ufc.br.util.AulaFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,7 +15,9 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaReposotory;
 
-    public void salvar(Pessoa pessoa){
+    public void salvar(Pessoa pessoa, MultipartFile imagem){
+        String caminho = "images/" + pessoa.getNome() + ".png";
+        AulaFileUtil.salvarImagem(caminho,imagem);
         pessoaReposotory.save(pessoa);
     }
 
