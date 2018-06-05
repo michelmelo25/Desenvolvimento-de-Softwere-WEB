@@ -21,15 +21,19 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @RequestMapping("/pessoa/formulario")
-    public String formularioPessoa(){
-        return "formulario";
+    public ModelAndView formularioPessoa(){
+        ModelAndView mv = new ModelAndView("formulario");
+        mv.addObject("pessoa",new Pessoa());
+        return mv;
     }
 
     @PostMapping("/pessoa/salvar")
-    public String salvar(Pessoa pessoa){
+    public ModelAndView salvar(Pessoa pessoa){
         //salvar no banco
         pessoaService.salvar(pessoa);
-        return "formulario";
+        ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
+//        "formulario"
+        return mv;
     }
 
     @RequestMapping("/pessoa/listar")
@@ -37,7 +41,6 @@ public class PessoaController {
         List<Pessoa> pessoaList = pessoaService.retornarLista();
         ModelAndView mv = new ModelAndView("pagina-listagem");
         mv.addObject("todasAsPessoas", pessoaList);
-
         return mv;
     }
 
@@ -45,6 +48,14 @@ public class PessoaController {
     public ModelAndView excluir(@PathVariable Long id){
         pessoaService.excluirPessoa(id);
         ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
+        return mv;
+    }
+
+    @RequestMapping("/pessoa/atualizar/{id}")
+    public ModelAndView atualizar(@PathVariable Long id){
+        Pessoa pessoa = pessoaService.buscarPorId(id);
+        ModelAndView mv = new ModelAndView("formulario");
+        mv.addObject("pessoa", pessoa);
         return mv;
     }
 }

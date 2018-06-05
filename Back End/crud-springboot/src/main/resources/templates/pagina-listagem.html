@@ -47,6 +47,7 @@
         <td th:text="${pessoa.nome}"></td>
         <td th:text="${pessoa.time}"></td>
         <td><a th:href="@{/pessoa/excluir/{id}(id = ${pessoa.id})}"><button type="button" class="btn btn-outline-danger">X</button></a></td>
+        <td><a th:href="@{/pessoa/atualizar/{id}(id = ${pessoa.id})}"><button type="button" class="btn btn-outline-secondary">Atualizar</button></a></td>
     </tr>
     </tbody>
 </table>

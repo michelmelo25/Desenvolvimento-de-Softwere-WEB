@@ -25,4 +25,7 @@ public class PessoaService {
         pessoaReposotory.deleteById(id);
     }
 
+    public Pessoa buscarPorId(Long id) {
+        return pessoaReposotory.getOne(id);
+    }
 }
