@@ -1,9 +1,9 @@
 package com.ufc.br.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Pessoa {
@@ -13,6 +13,10 @@ public class Pessoa {
     private Long id;
     private String nome;
     private String time;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date dataNascimento;
 
     public Long getId() {
         return id;
@@ -36,5 +40,13 @@ public class Pessoa {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

@@ -1,0 +1,8 @@
+.img-title {
+    background: url('../imagens/imga.jpg') center right;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    max-width: 100%;
+    width: 100%;
+    float: right;
+}

@@ -30,12 +30,14 @@ public class PessoaController {
     }
 
     @PostMapping("/pessoa/salvar")
-    public String salvar(Pessoa pessoa, @RequestParam(value= "imagem")MultipartFile imagem){
+    public ModelAndView salvar(Pessoa pessoa, @RequestParam(value= "imagem")MultipartFile imagem){
         //salvar no banco
         pessoaService.salvar(pessoa, imagem);
+        ModelAndView mv = new ModelAndView("formulario");
+        mv.addObject("mensagem", "Usuario Cadastrado com secesso");
 //        ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
 //        "formulario"
-        return "formulario";
+        return mv;
     }
 
     @RequestMapping("/pessoa/listar")

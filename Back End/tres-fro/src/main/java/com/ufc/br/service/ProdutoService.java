@@ -1,0 +1,59 @@
+package com.ufc.br.service;
+
+import com.ufc.br.model.Produto;
+import com.ufc.br.repository.ProdutoRepository;
+import com.ufc.br.util.AulaFileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class ProdutoService {
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    public void salvar(Produto produto, MultipartFile imagem){
+        String caminho = "imagens/" + produto.getNome() + ".jpg";
+        AulaFileUtil.salvarImagem(caminho,imagem);
+        produto.setCaminhoImagem(caminho);
+        produtoRepository.save(produto);
+    }
+
+    public void excluirProduto(Long id){
+        produtoRepository.deleteById(id);
+    }
+
+//    funcao retorna um lista com os produtos relacionados a busta
+    public List buscarProduto(String nome){
+        List<Produto> listproduto = new ArrayList<>();
+        listproduto = produtoRepository.findAll();
+        Produto produto = new Produto();
+//        procura e seleciona o objeto referente ao nome
+        for (Produto prod: listproduto ) {
+            if(prod.getNome().equals(nome)){
+                produto = prod;
+                break;
+            }
+        }
+
+        if(produto == null){
+            for (Produto prod: listproduto) {
+//            prod -> produto
+                if(!prod.getNome().contains(produto.getNome())){
+                    listproduto.remove(prod);
+                }
+            }
+            return listproduto;
+        }
+
+        return null;
+    }
+
+    public List listarProdutos(){
+        return produtoRepository.findAll();
+    }
+}

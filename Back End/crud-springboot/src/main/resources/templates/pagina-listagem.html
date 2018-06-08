@@ -35,6 +35,7 @@
     <thead>
     <tr>
         <th scope="col">ID</th>
+        <th scope="col">Imagem</th>
         <th scope="col">Nome</th>
         <th scope="col">Time</th>
     </tr>
@@ -44,10 +45,13 @@
         <!-- scope="row"-->
         <!--<th> scope="row""></th>-->
         <td th:text="${pessoa.id}"></td>
+        <td><img alt="" th:src="@{'/images/'+${pessoa.nome}+.png}" width="80px" height="40px"/></td>
         <td th:text="${pessoa.nome}"></td>
         <td th:text="${pessoa.time}"></td>
+        <td th:text="${{pessoa.dataNascimento}}"></td>
         <td><a th:href="@{/pessoa/excluir/{id}(id = ${pessoa.id})}"><button type="button" class="btn btn-outline-danger">X</button></a></td>
         <td><a th:href="@{/pessoa/atualizar/{id}(id = ${pessoa.id})}"><button type="button" class="btn btn-outline-secondary">Atualizar</button></a></td>
+
     </tr>
     </tbody>
 </table>
