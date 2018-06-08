@@ -20,6 +20,8 @@ public class ProdutoController {
     @RequestMapping("/home/destaques")
     public ModelAndView listarHome(){
         List<Produto> listProduto = produtoService.listarProdutos();
+//        System.out.println(listProduto.get(1).getPresco());
+//        System.out.println(listProduto.get(1).getPresco().);
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("todosOsProdutos", listProduto);
         return mv;
@@ -27,6 +29,7 @@ public class ProdutoController {
 
     @RequestMapping("/home/add")
     public ModelAndView addProduto(Produto produto, @RequestParam(value= "imagem")MultipartFile imagem){
+        produto.setPromocao(false);
         produtoService.salvar(produto,imagem);
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("produto", produto);

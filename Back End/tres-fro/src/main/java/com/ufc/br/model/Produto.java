@@ -1,9 +1,6 @@
 package com.ufc.br.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Produto {
@@ -14,6 +11,7 @@ public class Produto {
     private String nome;
     private Double presco;
     private String caminhoImagem;
+    private Boolean promocao;
 
     public Long getId() {
         return id;
@@ -45,5 +43,13 @@ public class Produto {
 
     public void setCaminhoImagem(String caminhoImagem) {
         this.caminhoImagem = caminhoImagem;
+    }
+
+    public Boolean getPromocao() {
+        return promocao;
+    }
+
+    public void setPromocao(Boolean promocao) {
+        this.promocao = promocao;
     }
 }

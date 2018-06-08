@@ -23,6 +23,10 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
+    public List promocao(boolean promocao){
+        return produtoRepository.findByPromocao(promocao);
+    }
+
     public void excluirProduto(Long id){
         produtoRepository.deleteById(id);
     }
