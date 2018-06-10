@@ -17,4 +17,14 @@ public class UsuarioControler {
         ModelAndView mv = new ModelAndView("home");
         return mv;
     }
+
+    @RequestMapping("/usuario/cadastro")
+    public ModelAndView cadastrar(){
+//        usuario so sera cadastrado se ele ja nao estiver
+//        se o usuario foi cadastrado enviar um alerta de sucesso
+//        caso contrario enviar alerta de erro
+        ModelAndView mv = new ModelAndView("cadastro");
+        return mv;
+    }
+
 }

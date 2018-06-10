@@ -121,25 +121,53 @@
 <div style="padding: 2%">
     <div class="card" style="width: 77rem;">
         <div class="card-body">
-            <h5 class="card-title">O que é a Tres FRÔ?</h5>
-            <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-            <p class="card-text">
-                A <b>Tres da FRÔ</b> é uma loja dedicada a levar as melhores bebidas para o seu publico,
-                com uma oportunidade de degustar o melhor as legitimas bebidas em suas mais diversas modalidades.
-            </p>
-            <p class="card-text">
-                Beber bem e bater papo são duas artes com grandes afinidades entre si. E a melhor companhia para exercitá-las é com os produtos do <b>Tres FRÔ</b>.
-                Por isso sempre trabalhamos para uma maxima esperiencia ao degustar os nossos produtos.
+            <h5 class="card-title">Cadastre-se</h5>
+            <form method="POST" action="/usuario/cadastro" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome:</label>
+                    <input type="text" class="form-control" id="Nomecadastro" placeholder="Nome" name="nome">
+                </div>
 
-                Portanto, para a Novíssima Era que está chegando, em que homens e mulheres não discutirão se têm alguns quilos a mais ou
-                alguns centímetros a menos na barriga. Estarão, sim, reunidos em torno de copos e garrafas, usufruindo do grande prazer de comer sem ter fome e de beber sem ter sede,
-                de compartilhar experiências e de rir com os outros e de si mesmos.
-            </p>
-            <h6 class="card-subtitle mb-2 text-muted">Tres FRÔ, sempre levando o melhor em bebidas destiladas para você.</h6>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">CPF:</label>
+                    <input type="text" class="form-control" id="cpfcadastro" placeholder="CPF" name="cpf">
+                </div>
 
-            <p class="card-text" style="text-align: right">
-                Uma loja by Senhorita Stéphanie.
-            </p>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">CEP:</label>
+                    <input type="text" class="form-control" id="cepcadastro" placeholder="CEP" name="cep">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Rua:</label>
+                    <input type="text" class="form-control" id="ruacadastro" placeholder="Rua" name="rua">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Numero:</label>
+                    <input type="text" class="form-control" id="numerocadastro" placeholder="Numero" name="numero">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Bairro:</label>
+                    <input type="text" class="form-control" id="bairrrocadastro" placeholder="Bairro" name="bairro">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">E-mail:</label>
+                    <input type="text" class="form-control" id="Emailcadastro" placeholder="E-mail" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Senha:</label>
+                    <input type="password" class="form-control" id="passwordcadastro" placeholder="Senha" name="senha">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success">Cadastrar</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

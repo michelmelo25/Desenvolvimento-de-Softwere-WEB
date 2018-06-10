@@ -41,4 +41,10 @@ public class ProdutoController {
         ModelAndView mv = new ModelAndView("sobre");
         return mv;
     }
+
+    @RequestMapping("/cadastro")
+    public ModelAndView cadastro(){
+        ModelAndView mv = new ModelAndView("cadastro");
+        return mv;
+    }
 }
