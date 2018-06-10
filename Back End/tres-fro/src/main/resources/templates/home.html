@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="/home/destaques">Bebidas</a>
+                <a class="nav-link" href="/home/produtos">Bebidas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Coisa 2</a>
@@ -35,8 +35,8 @@
     </button> -->
     <a class="navbar-brand" href="/cadastro">Cadastro</a>
     <a class="navbar-brand" href="#" data-target="#login" data-toggle="modal">Login</a>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" method="POST" action="/search" enctype="multipart/form-data">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="nome">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
@@ -121,7 +121,6 @@
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
 <br>
-<!-- <img class="card-img-top" src="../imagens/download (1).svg" alt="Card image cap"> -->
 <!-- LINHA 1 -->
 <div class="container-fluid">
     <div class="row" id="row1">
@@ -151,6 +150,21 @@
             <br>
         </div>
     </div>
+
+    <div class="row" id="row3">
+        <div class="col-md-3" th:each="produto: ${ProdutosBusca}">
+            <div class="card text-center" style="height: 30rem">
+                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
+                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
+                    <a href="#" class="btn btn-outline-info">Comprar</a>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
     <br>
     <div id="btmais" style="text-align: center">
         <button type="button" class="btn btn-outline-dark">Mostrar Mais</button>
@@ -163,7 +177,7 @@
 <footer class="rodape">
     <label>(88) 99582-4052</label>
     <br>
-    <label>Copyright © 2018 Whisketeria da FRÔ - Todos os diretiros reservador</label>
+    <label>Copyright © 2018 Tres da FRÔ - Todos os diretiros reservador</label>
     <br>
     <label>Powered by: Michel de Melo Vieira</label>
 </footer>

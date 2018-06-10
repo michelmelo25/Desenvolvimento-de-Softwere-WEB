@@ -33,28 +33,7 @@ public class ProdutoService {
 
 //    funcao retorna um lista com os produtos relacionados a busta
     public List buscarProduto(String nome){
-        List<Produto> listproduto = new ArrayList<>();
-        listproduto = produtoRepository.findAll();
-        Produto produto = new Produto();
-//        procura e seleciona o objeto referente ao nome
-        for (Produto prod: listproduto ) {
-            if(prod.getNome().equals(nome)){
-                produto = prod;
-                break;
-            }
-        }
-
-        if(produto == null){
-            for (Produto prod: listproduto) {
-//            prod -> produto
-                if(!prod.getNome().contains(produto.getNome())){
-                    listproduto.remove(prod);
-                }
-            }
-            return listproduto;
-        }
-
-        return null;
+        return  produtoRepository.findByNomeContains(nome);
     }
 
     public List listarProdutos(){

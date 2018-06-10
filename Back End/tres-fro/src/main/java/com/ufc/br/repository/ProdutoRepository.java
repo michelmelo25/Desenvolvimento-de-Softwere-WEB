@@ -8,4 +8,6 @@ import java.util.List;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     public List findByPromocao(boolean promocao);
+
+    public List findByNomeContains(String nome);
 }

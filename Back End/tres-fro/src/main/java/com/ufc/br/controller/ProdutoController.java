@@ -17,13 +17,21 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
-    @RequestMapping("/home/destaques")
+    @RequestMapping("/home/produtos")
     public ModelAndView listarHome(){
         List<Produto> listProduto = produtoService.listarProdutos();
 //        System.out.println(listProduto.get(1).getPresco());
 //        System.out.println(listProduto.get(1).getPresco().);
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("todosOsProdutos", listProduto);
+        return mv;
+    }
+
+    @RequestMapping("/search")
+    public ModelAndView pesquisa(String nome){
+        List<Produto> listProduto = produtoService.buscarProduto(nome);
+        ModelAndView mv = new ModelAndView("home");
+        mv.addObject("ProdutosBusca", listProduto);
         return mv;
     }
 
