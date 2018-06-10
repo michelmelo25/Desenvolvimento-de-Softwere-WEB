@@ -1,0 +1,9 @@
+.rodape {
+    color: white;
+    /*background-color: white;*/
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url("../../../imagens/fundo-rodape.png");
+    text-align: right;
+    padding-right: 1%;
+}

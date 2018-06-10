@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Sobre</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/stilos.css">
 
@@ -30,11 +30,8 @@
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
     <a class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Produto
-    </button> -->
     <a class="navbar-brand" href="#">Cadastro</a>
-    <a class="navbar-brand" href="#" data-target="#login" data-toggle="modal">Login</a>
+    <a class="navbar-brand" href="#">Login</a>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -81,89 +78,44 @@
     </div>
 </div>
 
-<!--Modal Login-->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="titlelogin">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <form method="POST" action="/usuario/login" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">E-mail:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="E-mail" name="email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Senha:</label>
-                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="senha">
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-outline-success">Logar</button>
-                    </div>
-                </form>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <!-- img-fluid -->
 <div>
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
-<br>
-<!-- <img class="card-img-top" src="../imagens/download (1).svg" alt="Card image cap"> -->
-<!-- LINHA 1 -->
-<div class="container-fluid">
-    <div class="row" id="row1">
-        <div class="col-md-3" th:each="produto: ${destaques}">
-            <div class="card text-center" style="height: 30rem">
-                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
-                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
-                    <a href="#" class="btn btn-outline-info">Comprar</a>
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
 
-    <div class="row" id="row2"  >
-        <div class="col-md-3" th:each="produto: ${todosOsProdutos}">
-            <div class="card text-center" style="height: 30rem">
-                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
-                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
-                    <a href="#" class="btn btn-outline-info">Comprar</a>
-                </div>
-            </div>
-            <br>
+<div style="padding: 2%">
+    <div class="card" style="width: 77rem;">
+        <div class="card-body">
+            <h5 class="card-title">O que é a Tres FRÔ?</h5>
+            <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+            <p class="card-text">
+                A <b>Tres da FRÔ</b> é uma loja dedicada a levar as melhores bebidas para o seu publico,
+                com uma oportunidade de degustar o melhor as legitimas bebidas em suas mais diversas modalidades.
+            </p>
+            <p class="card-text">
+                Beber bem e bater papo são duas artes com grandes afinidades entre si. E a melhor companhia para exercitá-las é com os produtos do <b>Tres FRÔ</b>.
+                Por isso sempre trabalhamos para uma maxima esperiencia ao degustar os nossos produtos.
+
+                Portanto, para a Novíssima Era que está chegando, em que homens e mulheres não discutirão se têm alguns quilos a mais ou
+                alguns centímetros a menos na barriga. Estarão, sim, reunidos em torno de copos e garrafas, usufruindo do grande prazer de comer sem ter fome e de beber sem ter sede,
+                de compartilhar experiências e de rir com os outros e de si mesmos.
+            </p>
+            <h6 class="card-subtitle mb-2 text-muted">Tres FRÔ, sempre levando o melhor em bebidas destiladas para você.</h6>
+
+            <p class="card-text" style="text-align: right">
+                Uma loja by Senhorita Stéphanie.
+            </p>
         </div>
-    </div>
-    <br>
-    <div id="btmais" style="text-align: center">
-        <button type="button" class="btn btn-outline-dark">Mostrar Mais</button>
     </div>
 </div>
-<br>
+
 
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <footer class="rodape">
     <label>(88) 99582-4052</label>
     <br>
-    <label>Copyright © 2018 Whisketeria da FRÔ - Todos os diretiros reservador</label>
+    <label>Copyright © 2018 Tres FRÔ - Todos os diretiros reservador</label>
     <br>
     <label>Powered by: Michel de Melo Vieira</label>
 </footer>

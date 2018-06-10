@@ -35,4 +35,10 @@ public class ProdutoController {
         mv.addObject("produto", produto);
         return mv;
     }
+
+    @RequestMapping("/sobre")
+    public ModelAndView sobre(){
+        ModelAndView mv = new ModelAndView("sobre");
+        return mv;
+    }
 }
