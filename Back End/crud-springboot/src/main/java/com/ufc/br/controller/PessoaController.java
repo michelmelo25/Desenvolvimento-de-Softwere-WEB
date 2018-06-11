@@ -62,4 +62,9 @@ public class PessoaController {
         mv.addObject("pessoa", pessoa);
         return mv;
     }
+
+    @RequestMapping("/pessoa/logar")
+    public String login(){
+        return "login";
+    }
 }
