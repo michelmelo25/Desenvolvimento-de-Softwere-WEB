@@ -3,11 +3,14 @@ package com.ufc.br.security;
 import com.ufc.br.model.Pessoa;
 import com.ufc.br.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Repository
 public class UserDetailsServiseImplementacao implements UserDetailsService{
 
@@ -20,6 +23,8 @@ public class UserDetailsServiseImplementacao implements UserDetailsService{
         if(pessoa == null){
             throw new UsernameNotFoundException("Usuario nao encontrado");
         }
-        return pessoa;
+//        System.out.println(pessoa.getNome() + " " + pessoa.getAuthorities());
+        System.out.println(pessoa.getId() + " " + pessoa.getNome() + " " + pessoa.getUsername() + " " + pessoa.getRoles());
+        return new User(pessoa.getUsername(), pessoa.getPassword(),true,true,true,true, pessoa.getAuthorities());
     }
 }

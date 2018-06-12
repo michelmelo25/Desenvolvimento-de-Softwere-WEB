@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Pessoa implements UserDetails{
@@ -23,6 +24,15 @@ public class Pessoa implements UserDetails{
 
     private String login;
     private String senha;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "pessoas_roles",
+            joinColumns = @JoinColumn(
+                    name = "pessoa_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "papel"))
+    private List<Role> roles;
 
     public String getLogin() {
         return login;
@@ -72,9 +82,17 @@ public class Pessoa implements UserDetails{
         this.dataNascimento = dataNascimento;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return (Collection<? extends GrantedAuthority>) this.roles;
     }
 
     @Override
