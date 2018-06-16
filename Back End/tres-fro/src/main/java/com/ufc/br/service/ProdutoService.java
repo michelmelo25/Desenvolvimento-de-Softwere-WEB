@@ -36,7 +36,7 @@ public class ProdutoService {
         return  produtoRepository.findByNomeContains(nome);
     }
 
-    public List listarProdutos(){
-        return produtoRepository.findAll();
-    }
+    public List listarProdutos(){return produtoRepository.findAll();}
+
+    public List tipo(String tipo){ return produtoRepository.findByTipo(tipo);}
 }

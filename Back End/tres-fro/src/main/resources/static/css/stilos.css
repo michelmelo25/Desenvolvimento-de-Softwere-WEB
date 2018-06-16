@@ -7,3 +7,7 @@
     text-align: right;
     padding-right: 1%;
 }
+
+body{
+    background-image: url("../../../imagens/body-bg.png");
+}

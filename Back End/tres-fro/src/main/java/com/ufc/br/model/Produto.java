@@ -12,6 +12,24 @@ public class Produto {
     private Double presco;
     private String caminhoImagem;
     private Boolean promocao;
+    private String tipo;
+    private Long qtd;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Long getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(Long qtd) {
+        this.qtd = qtd;
+    }
 
     public Long getId() {
         return id;

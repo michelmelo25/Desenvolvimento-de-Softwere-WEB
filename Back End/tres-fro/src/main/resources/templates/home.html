@@ -10,7 +10,7 @@
 
 </head>
 <body style="background: url('../../../imagens/body-bg.png')">
-<nav class="navbar fixed-top navbar-dark bg-dark">
+<nav  class="navbar fixed-top navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,16 +20,16 @@
                 <a class="nav-link" href="/home/produtos">Bebidas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Coisa 2</a>
+                <a class="nav-link" href="/produtos/vodka">Vodka</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Coisa 3</a>
+                <a class="nav-link" href="/produtos/whisky">Whisky</a>
             </li>
         </ul>
     </div>
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
-    <a class="navbar-brand" href="/cadastro">Produtos</a>
+    <a class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Produto
     </button> -->
@@ -37,7 +37,7 @@
     <a class="navbar-brand" href="#" data-target="#login" data-toggle="modal">Login</a>
     <form class="form-inline my-2 my-lg-0" method="POST" action="/search" enctype="multipart/form-data">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="nome">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search <span class="glyphicon-glyphicon-search"></span></button>
     </form>
 </nav>
 
@@ -63,6 +63,16 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Preco:</label>
                         <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Presco" name="presco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Quantidade:</label>
+                        <input type="text" class="form-control" id="qtd" placeholder="Quantidade" name="qtd">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Tipo:</label>
+                        <input type="text" class="form-control" id="tipo" placeholder="Tipo" name="tipo">
                     </div>
 
                     <div class="form-group">
@@ -95,13 +105,13 @@
 
                 <form method="POST" action="/usuario/login" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">E-mail:</label>
-                        <input type="text" class="form-control" id="Email" placeholder="E-mail" name="email">
+                        <label for="exampleInputEmail1">Login:</label>
+                        <input type="text" class="form-control" id="Email" placeholder="Login" name="username">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha:</label>
-                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="senha">
+                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="username">
                     </div>
 
                     <div class="modal-footer">
@@ -130,21 +140,9 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${produto.nome}"> </h5>
                     <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
-                    <a href="#" class="btn btn-outline-info">Comprar</a>
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-
-    <div class="row" id="row2"  >
-        <div class="col-md-3" th:each="produto: ${todosOsProdutos}">
-            <div class="card text-center" style="height: 30rem">
-                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
-                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
-                    <a href="#" class="btn btn-outline-info">Comprar</a>
+                    <a href="#" id="compra" class="btn btn-outline-info">Comprar</a>
+                    <!--<i class="glyphicon glyphicon-pencil"></i>-->
+                    <span class="glyphicon-glyphicon-glass"></span>
                 </div>
             </div>
             <br>
@@ -166,14 +164,16 @@
     </div>
 
     <br>
-    <div id="btmais" style="text-align: center">
-        <button type="button" class="btn btn-outline-dark">Mostrar Mais</button>
-    </div>
+    <!--<div id="btmais" style="text-align: center">-->
+        <!--<button type="button" class="btn btn-outline-dark">Mostrar Mais</button>-->
+    <!--</div>-->
 </div>
 <br>
 
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<!--<script src="/js/util.js"></script>-->
+
 <footer class="rodape">
     <label>(88) 99582-4052</label>
     <br>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sobre</title>
+    <title>Tags</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/stilos.css">
 
@@ -30,6 +30,9 @@
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
     <a class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Produto
+    </button> -->
     <a class="navbar-brand" href="/cadastro">Cadastro</a>
     <a class="navbar-brand" href="#" data-target="#login" data-toggle="modal">Login</a>
     <form class="form-inline my-2 my-lg-0" method="POST" action="/search" enctype="multipart/form-data">
@@ -102,13 +105,13 @@
 
                 <form method="POST" action="/usuario/login" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">E-mail:</label>
-                        <input type="text" class="form-control" id="Email" placeholder="E-mail" name="email">
+                        <label for="exampleInputEmail1">Login:</label>
+                        <input type="text" class="form-control" id="Email" placeholder="Login" name="username">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha:</label>
-                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="senha">
+                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="username">
                     </div>
 
                     <div class="modal-footer">
@@ -127,36 +130,51 @@
 <div>
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
-
-<div style="padding: 2%">
-    <div class="card" style="width: 77rem;">
-        <div class="card-body">
-            <h5 class="card-title">O que é a Tres FRÔ?</h5>
-            <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-            <p class="card-text">
-                A <b>Tres da FRÔ</b> é uma loja dedicada a levar as melhores bebidas para o seu publico,
-                com uma oportunidade de degustar o melhor as legitimas bebidas em suas mais diversas modalidades.
-            </p>
-            <p class="card-text">
-                Beber bem e bater papo são duas artes com grandes afinidades entre si. E a melhor companhia para exercitá-las é com os produtos do <b>Tres FRÔ</b>.
-                Por isso sempre trabalhamos para uma maxima esperiencia ao degustar os nossos produtos.
-
-                Portanto, para a Novíssima Era que está chegando, em que homens e mulheres não discutirão se têm alguns quilos a mais ou
-                alguns centímetros a menos na barriga. Estarão, sim, reunidos em torno de copos e garrafas, usufruindo do grande prazer de comer sem ter fome e de beber sem ter sede,
-                de compartilhar experiências e de rir com os outros e de si mesmos.
-            </p>
-            <h6 class="card-subtitle mb-2 text-muted">Tres FRÔ, sempre levando o melhor em bebidas destiladas para você.</h6>
-
-            <p class="card-text" style="text-align: right">
-                Uma loja by Senhorita Stéphanie.
-            </p>
+<br>
+<!-- LINHA 1 -->
+<div class="container-fluid">
+    <div class="row" id="row1">
+        <div class="col-md-3" th:each="produto: ${vodkas}">
+            <div class="card text-center" style="height: 30rem">
+                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
+                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
+                    <a href="#" id="compra" class="btn btn-outline-info">Comprar</a>
+                </div>
+            </div>
+            <br>
         </div>
     </div>
-</div>
 
+    <div class="row" id="row2">
+        <div class="col-md-3" th:each="prod: ${whiskys}">
+            <form method="POST" action="/produto/pedido" enctype="multipart/form-data">
+                <div class="card text-center" style="height: 30rem">
+                    <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${prod.nome}+.jpg}"/>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${prod.nome}"> </h5>
+                        <p class="card-text" th:text="${'R$'+prod.presco}"> </p>
+                        <!--<a href="#" class="btn btn-outline-info">Comprar</a>-->
+                        <button type="submit" class="btn btn-outline-info">Comprar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+        </div>
+    </div>
+
+    <br>
+    <!--<div id="btmais" style="text-align: center">-->
+    <!--<button type="button" class="btn btn-outline-dark">Mostrar Mais</button>-->
+    <!--</div>-->
+</div>
+<br>
 
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<!--<script src="/js/util.js"></script>-->
+
 <footer class="rodape">
     <label>(88) 99582-4052</label>
     <br>
@@ -165,4 +183,4 @@
     <label>Powered by: Michel de Melo Vieira</label>
 </footer>
 </body>
-</html>
+</html>s

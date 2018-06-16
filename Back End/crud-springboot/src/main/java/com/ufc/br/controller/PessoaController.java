@@ -1,8 +1,7 @@
 package com.ufc.br.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import com.ufc.br.model.Pessoa;
-import com.ufc.br.repository.PessoaRepository;
 import com.ufc.br.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
+
 import java.util.List;
 
 @Controller
