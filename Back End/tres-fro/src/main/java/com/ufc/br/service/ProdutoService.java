@@ -36,6 +36,10 @@ public class ProdutoService {
         return  produtoRepository.findByNomeContains(nome);
     }
 
+    public Produto buscarProdutoPorID(Long id){
+        return produtoRepository.getOne(id);
+    }
+
     public List listarProdutos(){return produtoRepository.findAll();}
 
     public List tipo(String tipo){ return produtoRepository.findByTipo(tipo);}

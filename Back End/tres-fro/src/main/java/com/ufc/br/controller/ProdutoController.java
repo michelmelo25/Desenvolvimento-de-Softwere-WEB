@@ -6,6 +6,7 @@ import com.ufc.br.service.ProdutoService;
 import com.ufc.br.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,8 +21,10 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+    private List<Produto> carrinho = new ArrayList<>();
 
-    @RequestMapping("/home/produtos")
+
+    @RequestMapping("/produtos")
     public ModelAndView listarHome(){
         List<Produto> listProduto = produtoService.listarProdutos();
 //        System.out.println(listProduto.get(1).getPresco());
@@ -39,7 +42,7 @@ public class ProdutoController {
         return mv;
     }
 
-    @RequestMapping("/home/add")
+    @RequestMapping("/produto/add")
     public ModelAndView addProduto(Produto produto, @RequestParam(value= "imagem")MultipartFile imagem){
         produto.setPromocao(false);
         produtoService.salvar(produto,imagem);
@@ -61,8 +64,9 @@ public class ProdutoController {
         return mv;
     }
 
-    @RequestMapping("/produto/pedido")
-    public ModelAndView comprar(Produto produto){
+    @RequestMapping("/produto/pedido/{id}")
+    public ModelAndView comprar(@PathVariable Long id){
+        Produto produto = produtoService.buscarProdutoPorID(id);
         System.out.println(produto.getNome());
         System.out.println(produto.getPresco());
         List<Produto> l = new ArrayList<>();
@@ -90,4 +94,15 @@ public class ProdutoController {
         mv.addObject("whiskys",listProd);
         return mv;
     }
+
+    //Add carrinho
+    @RequestMapping("/produto/compra/addcarrinho/{id}") //{id}
+    public  ModelAndView addCarrinho(@PathVariable Long id){
+        Produto produto = produtoService.buscarProdutoPorID(id);
+        carrinho.add(produto);
+        ModelAndView mv = new ModelAndView("compra");
+        mv.addObject("carrinhoTemporario",carrinho);
+        return mv;
+    }
+
 }

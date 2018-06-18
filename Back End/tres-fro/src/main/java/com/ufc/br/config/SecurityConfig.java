@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/home/produtos").permitAll()
                 .antMatchers("/search").permitAll()
                 .antMatchers("/cadastro").permitAll()
+                .antMatchers("/produto/pedido/{id}").hasAnyRole("USER","ADMIN")
                 .antMatchers("/usuario/cadastro").permitAll()
                 .antMatchers("/produtos/vodka").permitAll()
                 .antMatchers("/produtos/whisky").permitAll()
@@ -36,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/usuario/login")
+                .loginPage("/usuario/login")
                 .permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }

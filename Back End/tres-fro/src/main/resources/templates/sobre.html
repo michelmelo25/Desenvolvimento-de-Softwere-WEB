@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="/home/produtos">Bebidas</a>
+                <a class="nav-link" href="produtos">Bebidas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/produtos/vodka">Vodka</a>
@@ -29,9 +29,10 @@
     </div>
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
-    <a class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
     <a class="navbar-brand" href="/cadastro">Cadastro</a>
-    <a class="navbar-brand" href="#" data-target="#login" data-toggle="modal">Login</a>
+    <a sec:authorize="!isAuthenticated()" class="navbar-brand" href="#" data-target="#login" data-toggle="modal">Login</a>
+    <a sec:authorize="hasAnyRole('ADMIN', 'USER')"  class="navbar-brand" href="/logout">Logout</a>
     <form class="form-inline my-2 my-lg-0" method="POST" action="/search" enctype="multipart/form-data">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="nome">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -51,7 +52,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" action="/home/add" enctype="multipart/form-data">
+                <form method="POST" action="/produto/add" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nome:</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nome" name="nome">
