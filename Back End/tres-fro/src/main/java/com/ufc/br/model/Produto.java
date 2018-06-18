@@ -15,6 +15,11 @@ public class Produto {
     private String tipo;
     private Long qtd;
 
+    @Override
+    public String toString() {
+        return nome + " " + presco + "\n";
+    }
+
     public String getTipo() {
         return tipo;
     }

@@ -67,8 +67,8 @@ public class ProdutoController {
     @RequestMapping("/produto/pedido/{id}")
     public ModelAndView comprar(@PathVariable Long id){
         Produto produto = produtoService.buscarProdutoPorID(id);
-        System.out.println(produto.getNome());
-        System.out.println(produto.getPresco());
+//        System.out.println(produto.getNome());
+//        System.out.println(produto.getPresco());
         List<Produto> l = new ArrayList<>();
         l.add(produto);
         ModelAndView mv = new ModelAndView("compra");
@@ -100,8 +100,10 @@ public class ProdutoController {
     public  ModelAndView addCarrinho(@PathVariable Long id){
         Produto produto = produtoService.buscarProdutoPorID(id);
         carrinho.add(produto);
-        ModelAndView mv = new ModelAndView("compra");
+        ModelAndView mv = new ModelAndView("redirect:/produto/pedido/{id}");
         mv.addObject("carrinhoTemporario",carrinho);
+//        System.out.println(carrinho.toString());
+//        System.out.println("\n");
         return mv;
     }
 

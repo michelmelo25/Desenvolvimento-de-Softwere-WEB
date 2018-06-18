@@ -214,7 +214,10 @@
                         <!-- <button type="button" id="confirm" class="btn btn-outline-success" style="position: static">Confirmar</button> -->
                     </form>
                 </div>
-                <button type="submit" class="btn btn-outline-success" style="margin-top: 5rem" id="comprar">Comprar</button>
+                <div>
+                    <a class="btn btn-outline-secondary" style="margin-top: 5rem" th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}">Carrinho</a>
+                    <button type="submit" class="btn btn-outline-success" style="margin-top: 5rem" id="comprar">Comprar</button>
+                </div>
             </div>
         </div>
     </div>
