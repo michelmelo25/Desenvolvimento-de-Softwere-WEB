@@ -102,9 +102,35 @@ public class ProdutoController {
         carrinho.add(produto);
         ModelAndView mv = new ModelAndView("redirect:/produto/pedido/{id}");
         mv.addObject("carrinhoTemporario",carrinho);
-//        System.out.println(carrinho.toString());
-//        System.out.println("\n");
+        System.out.println(carrinho.toString());
+        System.out.println("\n");
         return mv;
     }
+
+    //Pagina Carrinho
+    @RequestMapping("/carrinho")
+    public  ModelAndView carrinho(){
+        ModelAndView mv = new ModelAndView("carrinho");
+        if(!carrinho.isEmpty()){
+            mv.addObject("car", this.carrinho);
+        }
+        return mv;
+    }
+
+    @RequestMapping("/carrinho/excluir/{id}")
+    public ModelAndView excluirCarrinho(@PathVariable Long id){
+        for(Produto ele: carrinho){
+            if(ele.getId().equals(id)){
+                carrinho.remove(ele);
+            }
+        }
+        System.out.println("-----------------------");
+        System.out.println(carrinho.toString());
+        System.out.println("\n");
+        ModelAndView mv = new ModelAndView("redirect:/carrinho");
+//        mv.addObject("carro",carrinho);
+        return mv;
+    }
+
 
 }
