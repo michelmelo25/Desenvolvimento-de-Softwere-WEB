@@ -1,5 +1,6 @@
 package com.ufc.br.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.ufc.br.model.Produto;
 import com.ufc.br.model.Usuario;
 import com.ufc.br.service.ProdutoService;
@@ -111,8 +112,15 @@ public class ProdutoController {
     @RequestMapping("/carrinho")
     public  ModelAndView carrinho(){
         ModelAndView mv = new ModelAndView("carrinho");
+        double valorT = 0;
+        for(Produto p : carrinho){
+            valorT += p.getPresco();
+        }
         if(!carrinho.isEmpty()){
             mv.addObject("car", this.carrinho);
+            mv.addObject("valcar",valorT);
+        }else{
+            mv = new ModelAndView("redirect:/home");
         }
         return mv;
     }
@@ -132,5 +140,13 @@ public class ProdutoController {
         return mv;
     }
 
+    @RequestMapping("/deslogar")
+    public ModelAndView deslogar(){
+        carrinho.clear();
+        System.out.println("---------------------");
+        System.out.println(carrinho.toString());
+        ModelAndView mv = new ModelAndView("redirect:/logout");
+        return mv;
+    }
 
 }
