@@ -204,23 +204,8 @@
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
 <!-- LINHA 1 -->
-<!-- <div class="container-fluid">
-    <div class="row" id="row1">
-        <div class="col-md-3" th:each="produto: ${destaques}">
-            <div class="card text-center" style="height: 30rem">
-                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
-                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
-                    <a href="#" class="btn btn-outline-info">Comprar</a>
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-</div> -->
 
-<div class="card" style="width: 98%; height: 48rem; margin: 1%;" th:each="produto: ${destaques}">
+<div class="card" style="width: 98%; height: 100%; margin: 1%;" th:each="produto: ${destaques}">
     <div class="card-body">
         <div class="row" id="row1">
             <div class="col-md-4">
@@ -230,6 +215,15 @@
                 <h5 class="card-title" th:text="${produto.nome}"></h5>
                 <p class="card-text" th:text="${'R$'+produto.presco}"></p>
                 <br>
+                    <P class="card-text">Pagamento</P>
+                    <P class="card-text">Dados do Cartao</P>
+                    <label for="exampleInputEmail1">Numero</label>
+                    <input type="text" class="form-control" id="numero-card" style="width: 23%; margin-left: 77%" placeholder="Numero">
+                    <label for="exampleInputEmail1">Vencimento</label>
+                    <input type="text" class="form-control" id="venc" style="width: 10%; margin-left: 90%" placeholder="Venc">
+                    <label for="exampleInputEmail1">Cadigo de Segunranca</label>
+                    <input type="text" class="form-control" id="cod" style="width: 10%; margin-left: 90%" placeholder="Codigo">
+
                 <P class="card-text">Entrega</P>
 
                 <p>Endereco cadastrado: <input name="cobertura" type="radio" value="sim" id="cadend"/></p>
@@ -237,29 +231,6 @@
                 <p>
                     Novo endereco: <input name="cobertura" type="radio" value="nao" id="novoend" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"/>
                 </p>
-                <!-- <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">CEP</label>
-                                <input type="text" class="form-control" id="cep"  placeholder="CEP">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Rua</label>
-                                <input type="text" class="form-control" id="rua"  placeholder="Rua">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Numero</label>
-                                <input type="text" class="form-control" id="numero" placeholder="Numero">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Bairro</label>
-                                <input type="text" class="form-control" id="bairro"  placeholder="Bairro">
-                            </div>
-                                <button type="button" id="confirm" class="btn btn-outline-success" style="position: static">Confirmar</button>
-                            </form>
-                    </div>
-                </div>   -->
                 <div class="card card-body">
                     <form>
                         <div class="form-group">
@@ -290,27 +261,22 @@
     </div>
 </div>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 
 <script>
-    // $("#cadend").click(function(){
-    //     $("#collapseExample").collapse('hide')
-    //     $('#comprar').show()
-    // })
+    $(document).ready(function () {
+        var $seuCampoCep = $("#cep");
+        $seuCampoCep.mask('00000-000', {reverse: false});
 
-    //  $("#novoend").click(function(){
-    //      if($('#comprar').is( ":visible" )){
-    //         $('#comprar').hide()
-    //      }else{
-    //         $('#comprar').show()
+        var $seuCampoVenc = $("#venc");
+        $seuCampoVenc.mask('00/00', {reverse: false});
 
-    //      }
+        var $seuCampoCod = $("#cod");
+        $seuCampoCod.mask('000', {reverse: false});
 
-    // })
-
-    $("#confirm").click(function(){
-        $("#collapseExample").collapse('hide')
-        $('#comprar').show()
-    })
+        var $seuCampoNumCard = $("#numero-card");
+        $seuCampoNumCard.mask('0000 0000 0000 0000', {reverse: false});
+    });
 
 </script>
 

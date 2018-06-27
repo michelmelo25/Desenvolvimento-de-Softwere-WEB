@@ -25,7 +25,7 @@ public class PaginaInicialController {
     }
     @RequestMapping("")
     public ModelAndView inicioPadrao(){
-        ModelAndView mv = new ModelAndView("home");
+        ModelAndView mv = new ModelAndView("redirect:/home");
         return mv;
 //        return "home";
     }

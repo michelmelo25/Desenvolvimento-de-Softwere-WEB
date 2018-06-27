@@ -15,7 +15,7 @@ public class UsuarioControler {
 
     @RequestMapping("/usuario/login")
     public ModelAndView login(){
-        ModelAndView mv = new ModelAndView("home");
+        ModelAndView mv = new ModelAndView("redirect:/home");
         return mv;
     }
 
