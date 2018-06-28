@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/stilos.css">
+
+</head>
+<body style="background: url('../../../imagens/body-bg.png')">
+<nav  class="navbar fixed-top navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/produtos/vodka">Vodka</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/produtos/whisky">Whisky</a>
+            </li>
+        </ul>
+    </div>
+    <a class="navbar-brand" href="/home">Home</a>
+    <a class="navbar-brand" href="/sobre">Sobre</a>
+    <a class="navbar-brand" href="/produtos">Bebidas</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="/produto/listagem">Produtos</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>
+    <a sec:authorize="!isAuthenticated()" class="navbar-brand" href="/cadastro">Cadastro</a>
+    <!-- Perfil Usuario -->
+    <div class="dropdown">
+        <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img style="height: 32px; width: 32px" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0t
+        IEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCd
+        WlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My
+        5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUzIDUzIiB
+        zdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MyA1MzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVp
+        Z2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiNFN0VDRUQ7IiBkPSJNMTguNjEzLDQxLjU1MmwtNy45MDcsNC4zMTNjLTAuNDY0L
+        DAuMjUzLTAuODgxLDAuNTY0LTEuMjY5LDAuOTAzQzE0LjA0Nyw1MC42NTUsMTkuOTk4LDUzLDI2LjUsNTMgIGM2LjQ1NCwwLDEyLjM2Ny
+        0yLjMxLDE2Ljk2NC02LjE0NGMtMC40MjQtMC4zNTgtMC44ODQtMC42OC0xLjM5NC0wLjkzNGwtOC40NjctNC4yMzNjLTEuMDk0LTAuNTQ
+        3LTEuNzg1LTEuNjY1LTEuNzg1LTIuODg4di0zLjMyMiAgYzAuMjM4LTAuMjcxLDAuNTEtMC42MTksMC44MDEtMS4wM2MxLjE1NC0xLjYz
+        LDIuMDI3LTMuNDIzLDIuNjMyLTUuMzA0YzEuMDg2LTAuMzM1LDEuODg2LTEuMzM4LDEuODg2LTIuNTN2LTMuNTQ2ICBjMC0wLjc4LTAuM
+        zQ3LTEuNDc3LTAuODg2LTEuOTY1di01LjEyNmMwLDAsMS4wNTMtNy45NzctOS43NS03Ljk3N3MtOS43NSw3Ljk3Ny05Ljc1LDcuOTc3dj
+        UuMTI2ICBjLTAuNTQsMC40ODgtMC44ODYsMS4xODUtMC44ODYsMS45NjV2My41NDZjMCwwLjkzNCwwLjQ5MSwxLjc1NiwxLjIyNiwyLjI
+        zMWMwLjg4NiwzLjg1NywzLjIwNiw2LjYzMywzLjIwNiw2LjYzM3YzLjI0ICBDMjAuMjk2LDM5Ljg5OSwxOS42NSw0MC45ODYsMTguNjEz
+        LDQxLjU1MnoiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTU2MDgwOyIgZD0iTTI2Ljk1MywwLjAwNEMxMi4zMi0wLjI0NiwwLjI1N
+        CwxMS40MTQsMC4wMDQsMjYuMDQ3Qy0wLjEzOCwzNC4zNDQsMy41Niw0MS44MDEsOS40NDgsNDYuNzYgICBjMC4zODUtMC4zMzYsMC43OT
+        gtMC42NDQsMS4yNTctMC44OTRsNy45MDctNC4zMTNjMS4wMzctMC41NjYsMS42ODMtMS42NTMsMS42ODMtMi44MzV2LTMuMjRjMCwwLTI
+        uMzIxLTIuNzc2LTMuMjA2LTYuNjMzICAgYy0wLjczNC0wLjQ3NS0xLjIyNi0xLjI5Ni0xLjIyNi0yLjIzMXYtMy41NDZjMC0wLjc4LDAu
+        MzQ3LTEuNDc3LDAuODg2LTEuOTY1di01LjEyNmMwLDAtMS4wNTMtNy45NzcsOS43NS03Ljk3NyAgIHM5Ljc1LDcuOTc3LDkuNzUsNy45N
+        zd2NS4xMjZjMC41NCwwLjQ4OCwwLjg4NiwxLjE4NSwwLjg4NiwxLjk2NXYzLjU0NmMwLDEuMTkyLTAuOCwyLjE5NS0xLjg4NiwyLjUzIC
+        AgYy0wLjYwNSwxLjg4MS0xLjQ3OCwzLjY3NC0yLjYzMiw1LjMwNGMtMC4yOTEsMC40MTEtMC41NjMsMC43NTktMC44MDEsMS4wM1YzOC4
+        4YzAsMS4yMjMsMC42OTEsMi4zNDIsMS43ODUsMi44ODhsOC40NjcsNC4yMzMgICBjMC41MDgsMC4yNTQsMC45NjcsMC41NzUsMS4zOSww
+        LjkzMmM1LjcxLTQuNzYyLDkuMzk5LTExLjg4Miw5LjUzNi0xOS45QzUzLjI0NiwxMi4zMiw0MS41ODcsMC4yNTQsMjYuOTUzLDAuMDA0e
+        iIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2
+        c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a sec:authorize="!isAuthenticated()" class="dropdown-item" href="#" data-target="#login" data-toggle="modal">Login</a>
+            <a sec:authorize="hasAnyRole('ADMIN', 'USER')"  class="dropdown-item" href="/deslogar">Logout</a>
+            <!--<a class="dropdown-item" href="#">Historico</a>-->
+            <a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/usuario/perfil/{user} (user = ${#authentication.name})}">Perfil</a>
+        </div>
+    </div>
+    <!-- Carrinho -->
+    <a class="navbar-brand" href="/carrinho">
+        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTkt
+        MSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTV
+        kcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi
+        B4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSI
+        geD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTEuOTk5IDUxMS45OTkiIHN0eWxlPSJlbmFibGUtYmFja2dyb3Vu
+        ZDpuZXcgMCAwIDUxMS45OTkgNTExLjk5OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9I
+        jI0cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yMTQuNjg1LDQwMi44MjhjLTI0LjgyOSwwLTQ1LjAyOSwyMC4yLTQ1Lj
+        AyOSw0NS4wMjljMCwyNC44MjksMjAuMiw0NS4wMjksNDUuMDI5LDQ1LjAyOXM0NS4wMjktMjAuMiw0NS4wMjktNDUuMDI
+        5ICAgIEMyNTkuNzEzLDQyMy4wMjgsMjM5LjUxMyw0MDIuODI4LDIxNC42ODUsNDAyLjgyOHogTTIxNC42ODUsNDY3Ljc0
+        MmMtMTAuOTY2LDAtMTkuODg3LTguOTIyLTE5Ljg4Ny0xOS44ODcgICAgYzAtMTAuOTY2LDguOTIyLTE5Ljg4NywxOS44O
+        DctMTkuODg3czE5Ljg4Nyw4LjkyMiwxOS44ODcsMTkuODg3QzIzNC41NzIsNDU4LjgyMiwyMjUuNjUsNDY3Ljc0MiwyMT
+        QuNjg1LDQ2Ny43NDJ6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMzcyLjY
+        zLDQwMi44MjhjLTI0LjgyOSwwLTQ1LjAyOSwyMC4yLTQ1LjAyOSw0NS4wMjljMCwyNC44MjksMjAuMiw0NS4wMjksNDUu
+        MDI5LDQ1LjAyOXM0NS4wMjktMjAuMiw0NS4wMjktNDUuMDI5ICAgIEM0MTcuNjU4LDQyMy4wMjgsMzk3LjQ1OCw0MDIuO
+        DI4LDM3Mi42Myw0MDIuODI4eiBNMzcyLjYzLDQ2Ny43NDJjLTEwLjk2NiwwLTE5Ljg4Ny04LjkyMi0xOS44ODctMTkuOD
+        g3ICAgIGMwLTEwLjk2Niw4LjkyMi0xOS44ODcsMTkuODg3LTE5Ljg4N2MxMC45NjYsMCwxOS44ODcsOC45MjIsMTkuODg
+        3LDE5Ljg4N0MzOTIuNTE3LDQ1OC44MjIsMzgzLjU5NSw0NjcuNzQyLDM3Mi42Myw0NjcuNzQyeiIgZmlsbD0iI0ZGRkZG
+        RiIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTM4My43MTYsMTY1Ljc1NUgyMDMuNTY3Yy02Ljk0MywwL
+        TEyLjU3MSw1LjYyOC0xMi41NzEsMTIuNTcxYzAsNi45NDMsNS42MjksMTIuNTcxLDEyLjU3MSwxMi41NzFoMTgwLjE0OS
+        AgICBjNi45NDMsMCwxMi41NzEtNS42MjgsMTIuNTcxLTEyLjU3MUMzOTYuMjg3LDE3MS4zODIsMzkwLjY1OSwxNjUuNzU
+        1LDM4My43MTYsMTY1Ljc1NXoiIGZpbGw9IiNGRkZGRkYiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0z
+        NzMuOTExLDIzMS4wMzVIMjEzLjM3M2MtNi45NDMsMC0xMi41NzEsNS42MjgtMTIuNTcxLDEyLjU3MXM1LjYyOCwxMi41N
+        zEsMTIuNTcxLDEyLjU3MWgxNjAuNTM3ICAgIGM2Ljk0MywwLDEyLjU3MS01LjYyOCwxMi41NzEtMTIuNTcxQzM4Ni40OD
+        EsMjM2LjY2NCwzODAuODUzLDIzMS4wMzUsMzczLjkxMSwyMzEuMDM1eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPC9nPgo8L2c
+        +CjxnPgoJPGc+CgkJPHBhdGggZD0iTTUwNi4zNDEsMTA5Ljc0NGMtNC43OTQtNS44ODQtMTEuODk4LTkuMjU4LTE5LjQ4
+        OS05LjI1OEg5NS4yNzhMODcuMzcsNjIuMDk3Yy0xLjY1MS04LjAwOC03LjExMy0xNC43MzItMTQuNjE0LTE3Ljk4OSAgI
+        CBsLTU1LjE3Ny0yMy45NWMtNi4zNy0yLjc2Ny0xMy43NzMsMC4xNTYtMTYuNTM2LDYuNTI0Yy0yLjc2Niw2LjM3LDAuMT
+        U3LDEzLjc3NCw2LjUyNCwxNi41MzdMNjIuNzQ1LDY3LjE3bDYwLjgyNiwyOTUuMjYxICAgIGMyLjM5NiwxMS42MjgsMTI
+        uNzUyLDIwLjA2OCwyNC42MjUsMjAuMDY4aDMwMS4xNjZjNi45NDMsMCwxMi41NzEtNS42MjgsMTIuNTcxLTEyLjU3MWMw
+        LTYuOTQzLTUuNjI4LTEyLjU3MS0xMi41NzEtMTIuNTcxICAgIEgxNDguMTk3bC03LjM5OS0zNS45MTZINDUxLjY5YzExL
+        jg3MiwwLDIyLjIyOS04LjQ0LDI0LjYyNC0yMC4wNjhsMzUuMTYzLTE3MC42NzUgICAgQzUxMy4wMDgsMTIzLjI2Niw1MT
+        EuMTM2LDExNS42MjcsNTA2LjM0MSwxMDkuNzQ0eiBNNDUxLjY5LDI5Ni4zMDFIMTM1LjYxOWwtMzUuMTYxLTE3MC42NzR
+        sMzg2LjM5MywwLjAwMUw0NTEuNjksMjk2LjMwMXoiIGZpbGw9IiNGRkZGRkYiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8
+        Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nP
+        go8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+    </a>
+
+    <form id="pesq" class="form-inline my-2 my-lg-0" method="POST" action="/search" enctype="multipart/form-data">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="nome">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</span></button>
+    </form>
+</nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastrar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="POST" action="/produto/add" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nome:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nome" name="nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Preco:</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Presco" name="presco">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Quantidade:</label>
+                        <input type="text" class="form-control" id="qtd" placeholder="Quantidade" name="qtd">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Tipo:</label>
+                        <input type="text" class="form-control" id="tipo" placeholder="Tipo" name="tipo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Promocao:</label>
+                        <input type="text" class="form-control" id="promo" placeholder="promocao" name="promocao" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Selecione a Imagem do Produto</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagem">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-outline-success">Savar</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Modal Login-->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titlelogin">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="POST" action="/usuario/login" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Login:</label>
+                        <input type="text" class="form-control" id="usernamelogin" placeholder="Login" name="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Senha:</label>
+                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="password">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-outline-success">Logar</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- img-fluid -->
+<div>
+    <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
+</div>
+<br>
+<!-- LINHA 1 -->
+<div class="container-fluid">
+    <div class="row" id="row1">
+        <div class="col-md-3" th:each="produto: ${destaques}">
+            <div class="card text-center" style="height: 30rem">
+                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
+                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
+                    <a th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('USER')" class="btn btn-outline-info">Comprar</a>
+                    <a th:href="@{/cadastro}" sec:authorize="!isAuthenticated()" class="btn btn-outline-info">Comprar</a>
+                    <a th:href="@{/produto/excluir/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-danger">Excluir</a>
+                    <a th:href="@{/produto/atualizar/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-secondary">Atualizar</a>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <div class="row" id="row3">
+        <div class="col-md-3" th:each="produto: ${ProdutosBusca}">
+            <div class="card text-center" style="height: 30rem">
+                <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${produto.nome}"> </h5>
+                    <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
+                    <a th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('USER')" class="btn btn-outline-info">Comprar</a>
+                    <a th:href="@{/cadastro}" sec:authorize="!isAuthenticated()" class="btn btn-outline-info">Comprar</a>
+                    <a th:href="@{/produto/excluir/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-danger">Excluir</a>
+                    <a th:href="@{/produto/atualizar/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-secondary">Atualizar</a>
+
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <br>
+    <!--<div id="btmais" style="text-align: center">-->
+        <!--<button type="button" class="btn btn-outline-dark">Mostrar Mais</button>-->
+    <!--</div>-->
+</div>
+<br>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<!--<script src="/js/util.js"></script>-->
+
+<footer class="rodape">
+    <label>(88) 99582-4052</label>
+    <br>
+    <label>Copyright © 2018 Tres FRÔ - Todos os diretiros reservador</label>
+    <br>
+    <label>Powered by: Michel de Melo Vieira</label>
+</footer>
+</body>
+</html>
