@@ -23,10 +23,10 @@ public class PaginaInicialController {
         return mv;
 //        return "home";
     }
-    @RequestMapping("")
-    public ModelAndView inicioPadrao(){
-        ModelAndView mv = new ModelAndView("redirect:/home");
-        return mv;
-//        return "home";
-    }
+//    @RequestMapping("")
+//    public ModelAndView inicioPadrao(){
+//        ModelAndView mv = new ModelAndView("redirect:/home");
+//        return mv;
+////        return "home";
+//    }
 }

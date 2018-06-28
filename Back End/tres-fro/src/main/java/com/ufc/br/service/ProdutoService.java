@@ -23,8 +23,12 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
+    public void atualizar(Produto produto){
+        produtoRepository.save(produto);
+    }
+
     public List promocao(boolean promocao){
-        return produtoRepository.findByPromocao(promocao);
+        return produtoRepository.findByPromocaoAndQtdIsGreaterThan(promocao, new Long(0));
     }
 
     public void excluirProduto(Long id){
@@ -33,7 +37,7 @@ public class ProdutoService {
 
 //    funcao retorna um lista com os produtos relacionados a busta
     public List buscarProduto(String nome){
-        return  produtoRepository.findByNomeContains(nome);
+        return  produtoRepository.findByNomeContainsAndQtdIsGreaterThan(nome,new Long(0));
     }
 
     public Produto buscarProdutoPorID(Long id){
@@ -42,5 +46,5 @@ public class ProdutoService {
 
     public List listarProdutos(){return produtoRepository.findAll();}
 
-    public List tipo(String tipo){ return produtoRepository.findByTipo(tipo);}
+    public List tipo(String tipo){ return produtoRepository.findByTipoAndQtdIsGreaterThan(tipo,new Long(0));}
 }

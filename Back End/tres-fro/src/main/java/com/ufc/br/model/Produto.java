@@ -1,6 +1,7 @@
 package com.ufc.br.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Produto {
@@ -15,9 +16,20 @@ public class Produto {
     private String tipo;
     private Long qtd;
 
+    @ManyToMany(mappedBy = "historico")
+    private List<Usuario> usuario;
+
     @Override
     public String toString() {
         return nome + " " + presco + "\n";
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuario;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuario = usuarios;
     }
 
     public String getTipo() {

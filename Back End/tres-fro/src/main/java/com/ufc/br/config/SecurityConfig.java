@@ -30,6 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/search").permitAll()
                 .antMatchers("/cadastro").permitAll()
                 .antMatchers("/produto/pedido/{id}").hasAnyRole("USER","ADMIN")
+                .antMatchers("/efetuar_compra/{id}").hasAnyRole("USER","ADMIN")
+                .antMatchers("/usuario/perfil/{user}").hasAnyRole("USER","ADMIN")
                 .antMatchers("/usuario/cadastro").permitAll()
                 .antMatchers("/produtos/vodka").permitAll()
                 .antMatchers("/produtos/whisky").permitAll()

@@ -4,6 +4,7 @@ import com.ufc.br.model.Usuario;
 import com.ufc.br.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,5 +31,16 @@ public class UsuarioControler {
         ModelAndView mv = new ModelAndView("redirect:/home");
         return mv;
     }
+
+    @RequestMapping("/usuario/perfil/{user}")
+    public ModelAndView perfil(@PathVariable String user){
+        System.out.println("----------(PERFIL)-----------");
+        System.out.println(user);
+        Usuario usuario = usuarioService.buscarProLogin(user);
+        ModelAndView mv = new ModelAndView("perfil");
+        mv.addObject("usuario",usuario);
+        return mv;
+    }
+
 
 }

@@ -1,10 +1,12 @@
 package com.ufc.br.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,8 +25,12 @@ public class Usuario implements UserDetails {
     private String cep;
     private String numero;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date dataNascimento;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "usuarios_roles",
             joinColumns = @JoinColumn(
@@ -32,6 +38,33 @@ public class Usuario implements UserDetails {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "papel"))
     private List<Role> roles;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "usuario_historico",
+            joinColumns = @JoinColumn(
+                 name = "usuario_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                 name = "produto_id", referencedColumnName = "id"
+            )
+    )
+    private List<Produto> historico;
+
+    public List<Produto> getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(List<Produto> historico) {
+        this.historico = historico;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
     public List<Role> getRoles() {
         return roles;

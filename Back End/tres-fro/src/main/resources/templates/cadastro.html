@@ -16,9 +16,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="/produtos">Bebidas</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/produtos/vodka">Vodka</a>
             </li>
@@ -29,8 +26,8 @@
     </div>
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
-    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
-    <a class="navbar-brand" href="/cadastro">Cadastro</a>
+    <a class="navbar-brand" href="/produtos">Bebidas</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>    <a class="navbar-brand" href="/cadastro">Cadastro</a>
     <!-- Perfil Usuario -->
     <div class="dropdown">
         <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +59,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a sec:authorize="!isAuthenticated()" class="dropdown-item" href="#" data-target="#login" data-toggle="modal">Login</a>
             <a sec:authorize="hasAnyRole('ADMIN', 'USER')"  class="dropdown-item" href="/logout">Logout</a>
-            <a class="dropdown-item" href="#">Perfil</a>
+            <a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/usuario/perfil/{user} (user = ${#authentication.name})}">Perfil</a>
         </div>
     </div>
     <!-- Carrinho -->
@@ -144,6 +141,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Promocao:</label>
+                        <input type="text" class="form-control" id="promo" placeholder="promocao" name="promocao" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="exampleFormControlFile1">Selecione a Imagem do Produto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagem">
                     </div>
@@ -212,6 +214,11 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">CPF:</label>
                     <input type="text" class="form-control" id="cpfcadastro" placeholder="CPF" name="cpf">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Data de Nascimento</label>
+                    <input type="text" class="form-control" id="datenasc" placeholder="Nascimento" name="dataNascimento">
                 </div>
 
                 <div class="form-group">

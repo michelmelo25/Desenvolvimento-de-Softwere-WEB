@@ -16,4 +16,13 @@ public class UsuarioService {
         usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         usuarioRepository.save(usuario);
     }
+
+    public void atualizar(Usuario usuario){
+        usuarioRepository.save(usuario);
+    }
+
+
+    public Usuario buscarProLogin(String login){
+        return  usuarioRepository.findByLogin(login);
+    }
 }

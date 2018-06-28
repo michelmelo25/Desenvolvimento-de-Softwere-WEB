@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sobre</title>
+    <title>Editar Produto</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/stilos.css">
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
 
 </head>
 <body style="background: url('../../../imagens/body-bg.png')">
@@ -27,8 +31,7 @@
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
     <a class="navbar-brand" href="/produtos">Bebidas</a>
-    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>
-    <a class="navbar-brand" href="/cadastro">Cadastro</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>    <a class="navbar-brand" href="/cadastro">Cadastro</a>
     <!-- Perfil Usuario -->
     <div class="dropdown">
         <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -143,7 +146,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Promocao:</label>
-                        <input type="text" class="form-control" id="promo" placeholder="promocao" name="promocao" required>
+                        <input type="text" class="form-control" id="promo1" placeholder="promocao" name="promocao"required>
                     </div>
 
                     <div class="form-group">
@@ -196,41 +199,70 @@
         </div>
     </div>
 </div>
+<br>
 
 <!-- img-fluid -->
 <div>
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
+<!-- LINHA 1 -->
+<!--th:each="produto: ${usuario}"-->
+<div class="card" style="width: 98%; height: 100%; margin: 1%;" >
+    <div class="card-body">
+        <div class="row" id="row1">
+            <div class="col-md-12" style="text-align: left">
+                <form method="POST" action="/produto/add" enctype="multipart/form-data" th:object="${produto}">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nome:</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" th:field="*{nome}" required>
+                    </div>
 
-<div style="padding: 2%">
-    <div class="card" style="width: 77rem;">
-        <div class="card-body">
-            <h5 class="card-title">O que é a Tres FRÔ?</h5>
-            <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-            <p class="card-text">
-                A <b>Tres da FRÔ</b> é uma loja dedicada a levar as melhores bebidas para o seu publico,
-                com uma oportunidade de degustar o melhor as legitimas bebidas em suas mais diversas modalidades.
-            </p>
-            <p class="card-text">
-                Beber bem e bater papo são duas artes com grandes afinidades entre si. E a melhor companhia para exercitá-las é com os produtos do <b>Tres FRÔ</b>.
-                Por isso sempre trabalhamos para uma maxima esperiencia ao degustar os nossos produtos.
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Preco:</label>
+                        <input type="text" class="form-control" id="preco" placeholder="Preco" name="presco" th:field="*{presco}" required>
+                    </div>
 
-                Portanto, para a Novíssima Era que está chegando, em que homens e mulheres não discutirão se têm alguns quilos a mais ou
-                alguns centímetros a menos na barriga. Estarão, sim, reunidos em torno de copos e garrafas, usufruindo do grande prazer de comer sem ter fome e de beber sem ter sede,
-                de compartilhar experiências e de rir com os outros e de si mesmos.
-            </p>
-            <h6 class="card-subtitle mb-2 text-muted">Tres FRÔ, sempre levando o melhor em bebidas destiladas para você.</h6>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Quantidade:</label>
+                        <input type="text" class="form-control" id="qtd2" placeholder="Quantidate" name="qtd" th:field="*{qtd}" required>
+                    </div>
 
-            <p class="card-text" style="text-align: right">
-                Uma loja by Senhorita Stéphanie.
-            </p>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Promocao:</label>
+                        <input type="text" class="form-control" id="promo" placeholder="promocao" name="promocao" th:field="*{promocao}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tipo:</label>
+                        <input type="text" class="form-control" id="tipo2" placeholder="Tipo" name="tipo" th:field="*{tipo}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Selecione sua Imagem</label>
+                        <input type="file" class="form-control-file" id="imagem" name="imagem">
+                    </div>
+                    <button type="submit" class="btn btn-outline-success" id="atualizar">Atualizar</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script>
+    $('#atualizar').click(function () {
+
+    })
 
 
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+</script>
+
+
+
+
 <footer class="rodape">
     <label>(88) 99582-4052</label>
     <br>

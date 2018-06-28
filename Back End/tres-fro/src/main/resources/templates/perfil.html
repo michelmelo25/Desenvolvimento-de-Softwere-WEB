@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Comprar</title>
+    <title>Perfil</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/stilos.css">
 
@@ -20,9 +20,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="/produtos">Bebidas</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/produtos/vodka">Vodka</a>
             </li>
@@ -33,8 +30,8 @@
     </div>
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
-    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
-    <a class="navbar-brand" href="/cadastro">Cadastro</a>
+    <a class="navbar-brand" href="/produtos">Bebidas</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>    <a class="navbar-brand" href="/cadastro">Cadastro</a>
     <!-- Perfil Usuario -->
     <div class="dropdown">
         <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +63,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a sec:authorize="!isAuthenticated()" class="dropdown-item" href="#" data-target="#login" data-toggle="modal">Login</a>
             <a sec:authorize="hasAnyRole('ADMIN', 'USER')"  class="dropdown-item" href="/logout">Logout</a>
-            <a class="dropdown-item" href="#">Perfil</a>
+            <a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/usuario/perfil/{user} (user = ${#authentication.name})}">Perfil</a>
         </div>
     </div>
     <!-- Carrinho -->
@@ -148,6 +145,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Promocao:</label>
+                        <input type="text" class="form-control" id="promo" placeholder="promocao" name="promocao" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="exampleFormControlFile1">Selecione a Imagem do Produto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagem">
                     </div>
@@ -204,58 +206,47 @@
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
 <!-- LINHA 1 -->
-
-<div class="card" style="width: 98%; height: 100%; margin: 1%;" th:each="produto: ${destaques}">
+<!--th:each="produto: ${usuario}"-->
+<div class="card" style="width: 98%; height: 100%; margin: 1%;" >
     <div class="card-body">
         <div class="row" id="row1">
-            <div class="col-md-4">
-                <img class="card-img-top" alt="" style="height: 30rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>
+            <div class="col-md-12" style="text-align: left">
+                Nome:
+                <p class="card-title" th:text="${usuario.getNome()}"> </p>
+                E-mail:
+                <p class="card-text" th:text="${usuario.getEmail()}"></p>
+                CPF:
+                <p class="card-text" id="cpf" th:text="${usuario.getCpf()}"></p>
+                Data de Nascimento:
+                <p class="card-text" th:text="${usuario.getDataNascimento()}"></p>
+                CEP:
+                <p class="card-text" th:text="${usuario.getCep()}"></p>
+                Bairro:
+                <p class="card-text" th:text="${usuario.getBairro()}"></p>
+                Rua:
+                <p class="card-text" th:text="${usuario.getRua()}"></p>
+                Numero:
+                <p class="card-text" th:text="${usuario.getNumero()}"></p>
+                Historico de Colmpra:
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Presco</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!--<p class="card-text" th:text="${usuario.getHistorico()}"></p>-->
+                        <tr th:each="i: ${#numbers.sequence(0,usuario.getHistorico().size()-1)}">
+                            <th scope="row" th:text="${i+1}"></th>
+                            <td th:text="${usuario.getHistorico().get(i).getNome()}"></td>
+                            <td th:text="${'R$'+usuario.getHistorico().get(i).getPresco()}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-8" style="text-align: right">
-                <h5 class="card-title" th:text="${produto.nome}"></h5>
-                <p class="card-text" th:text="${'R$'+produto.presco}"></p>
-                <br>
-                    <P class="card-text">Pagamento</P>
-                    <P class="card-text">Dados do Cartao</P>
-                    <label for="exampleInputEmail1">Numero</label>
-                    <input type="text" class="form-control" id="numero-card" style="width: 23%; margin-left: 77%" placeholder="Numero">
-                    <label for="exampleInputEmail1">Vencimento</label>
-                    <input type="text" class="form-control" id="venc" style="width: 10%; margin-left: 90%" placeholder="Venc">
-                    <label for="exampleInputEmail1">Cadigo de Segunranca</label>
-                    <input type="text" class="form-control" id="cod" style="width: 10%; margin-left: 90%" placeholder="Codigo">
-
-                <P class="card-text">Entrega</P>
-
-                <p>Endereco cadastrado: <input name="cobertura" type="radio" value="sim" id="cadend"/></p>
-
-                <p>
-                    Novo endereco: <input name="cobertura" type="radio" value="nao" id="novoend" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"/>
-                </p>
-                <div class="card card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">CEP</label>
-                            <input type="text" class="form-control" id="cep"  placeholder="CEP">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Rua</label>
-                            <input type="text" class="form-control" id="rua"  placeholder="Rua">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Numero</label>
-                            <input type="text" class="form-control" id="numero" placeholder="Numero">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Bairro</label>
-                            <input type="text" class="form-control" id="bairro"  placeholder="Bairro">
-                        </div>
-                        <!-- <button type="button" id="confirm" class="btn btn-outline-success" style="position: static">Confirmar</button> -->
-                    </form>
-                </div>
-                <div>
-                    <a class="btn btn-outline-secondary" style="margin-top: 5rem" th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}">Carrinho</a>
-                    <button type="submit" class="btn btn-outline-success" style="margin-top: 5rem" id="comprar">Comprar</button>
-                </div>
             </div>
         </div>
     </div>
@@ -265,18 +256,10 @@
 
 <script>
     $(document).ready(function () {
-        var $seuCampoCep = $("#cep");
-        $seuCampoCep.mask('00000-000', {reverse: false});
-
-        var $seuCampoVenc = $("#venc");
-        $seuCampoVenc.mask('00/00', {reverse: false});
-
-        var $seuCampoCod = $("#cod");
-        $seuCampoCod.mask('000', {reverse: false});
-
-        var $seuCampoNumCard = $("#numero-card");
-        $seuCampoNumCard.mask('0000 0000 0000 0000', {reverse: false});
+        var $seuCampoCpf = $("#cpf");
+        $seuCampoCpf.mask('000.000.000-00', {reverse: false});
     });
+
 
 </script>
 

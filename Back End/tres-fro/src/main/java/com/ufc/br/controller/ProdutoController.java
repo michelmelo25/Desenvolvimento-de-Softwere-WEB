@@ -22,6 +22,9 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     private List<Produto> carrinho = new ArrayList<>();
 
 
@@ -45,7 +48,7 @@ public class ProdutoController {
 
     @RequestMapping("/produto/add")
     public ModelAndView addProduto(Produto produto, @RequestParam(value= "imagem")MultipartFile imagem){
-        produto.setPromocao(false);
+//        produto.setPromocao(false);
         produtoService.salvar(produto,imagem);
         ModelAndView mv = new ModelAndView("home");
         System.out.println(produto.toString());
@@ -149,4 +152,51 @@ public class ProdutoController {
         return mv;
     }
 
+//    @RequestMapping("/efetuar_compra/{id}/{user}")
+//    public ModelAndView efeturarCompra(@PathVariable Long id,@PathVariable String user){
+//        Produto produto = produtoService.buscarProdutoPorID(id);
+//        Usuario usuario = usuarioService.buscarProLogin(user);
+//
+//        System.out.println("---------------------------------------");
+//        System.out.println(usuario.getNome());
+//
+//        produto.setQtd(produto.getQtd() - 1);
+//        usuario.getHistorico().add(produto);
+//        usuarioService.atualizar(usuario);
+//        produtoService.atualizar(produto);
+//        ModelAndView mv = new ModelAndView("redirect:/produtos");
+//        return  mv;
+//    }
+
+    @RequestMapping("/efetuar_compra/{user}")
+    public ModelAndView efetuarCompraCar(@PathVariable String user){
+        Usuario usuario = usuarioService.buscarProLogin(user);
+        for(Produto p: carrinho){
+            Produto produto = produtoService.buscarProdutoPorID(p.getId());
+            produto.setQtd(produto.getQtd() - 1);
+            usuario.getHistorico().add(produto);
+            usuarioService.atualizar(usuario);
+            produtoService.atualizar(produto);
+        }
+        carrinho.clear();
+        ModelAndView mv = new ModelAndView("redirect:/produtos");
+        return  mv;
+    }
+
+    @RequestMapping("/produto/excluir/{id}")
+    public ModelAndView excluirProduto(@PathVariable Long id){
+        Produto produto = produtoService.buscarProdutoPorID(id);
+        produto.setQtd(new Long(0));
+        produtoService.atualizar(produto);
+        ModelAndView mv = new ModelAndView("/produtos");
+        return mv;
+    }
+
+    @RequestMapping("/produto/atualizar/{id}")
+    public ModelAndView editarProduto(@PathVariable Long id){
+        Produto produto = produtoService.buscarProdutoPorID(id);
+        ModelAndView mv = new ModelAndView("atualizar");
+        mv.addObject("produto",produto);
+        return mv;
+    }
 }

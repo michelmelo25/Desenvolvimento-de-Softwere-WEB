@@ -20,9 +20,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="/produtos">Bebidas</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/produtos/vodka">Vodka</a>
             </li>
@@ -33,8 +30,8 @@
     </div>
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
-    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Produtos</a>
-    <a class="navbar-brand" href="/cadastro">Cadastro</a>
+    <a class="navbar-brand" href="/produtos">Bebidas</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>    <a class="navbar-brand" href="/cadastro">Cadastro</a>
     <!-- Perfil Usuario -->
     <div class="dropdown">
         <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +63,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a sec:authorize="!isAuthenticated()" class="dropdown-item" href="#" data-target="#login" data-toggle="modal">Login</a>
             <a sec:authorize="hasAnyRole('ADMIN', 'USER')"  class="dropdown-item" href="/logout">Logout</a>
-            <a class="dropdown-item" href="#">Perfil</a>
+            <a sec:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/usuario/perfil/{user} (user = ${#authentication.name})}">Perfil</a>
         </div>
     </div>
     <!-- Carrinho -->
@@ -148,6 +145,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Promocao:</label>
+                        <input type="text" class="form-control" id="promo" placeholder="promocao" name="promocao" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="exampleFormControlFile1">Selecione a Imagem do Produto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagem">
                     </div>
@@ -224,7 +226,7 @@
                 <tr th:each="i: ${#numbers.sequence(0,car.size()-1)}">
                     <th scope="row" th:text="${i+1}"></th>
                     <td th:text="${car.get(i).getNome()}"></td>
-                    <td th:text="${'R$'+car.get(i).getPresco()}"></td>
+                    <td th:text="${'R$'+car.get(i).getPresco()}" id="presc"></td>
                     <td><a th:href="@{/carrinho/excluir/{id}(id = ${car.get(i).getId()})}">
 
                         <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLT
@@ -261,13 +263,14 @@
                 </tr>
                 </tbody>
             </table>
+            <!--<label th:text="${#authentication.name}"></label>-->
 
         </div>
         <div class="row" id="row2" >
             <!--th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}"-->
             <div class="col-md-12" style="text-align: right">
                 <a class="btn btn-outline-secondary" href="/produtos">Voltar</a>
-                <button type="submit" class="btn btn-outline-success" style="" id="comprar">Comprar</button>
+                <a th:href="@{/efetuar_compra/{user}(user = #authentication.name)}" class="btn btn-outline-success" style="" id="comprar">Comprar</a>
             </div>
         </div>
     </div>
