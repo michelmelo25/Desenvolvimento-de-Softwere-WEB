@@ -1,5 +1,6 @@
 package com.ufc.br.controller;
 
+import com.ufc.br.model.Role;
 import com.ufc.br.model.Usuario;
 import com.ufc.br.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UsuarioControler {
@@ -27,6 +30,7 @@ public class UsuarioControler {
 //        caso contrario enviar alerta de erro
 
         System.out.println(usuario.getNome());
+        System.out.println(usuario.getRoles());
         usuarioService.salvar(usuario);
         ModelAndView mv = new ModelAndView("redirect:/home");
         return mv;
@@ -42,5 +46,12 @@ public class UsuarioControler {
         return mv;
     }
 
+    @RequestMapping("/usuario/atualizar/{user}")
+    public ModelAndView editarProduto(@PathVariable String user){
+        Usuario usuario = usuarioService.buscarProLogin(user);
+        ModelAndView mv = new ModelAndView("atualizaruser");
+        mv.addObject("usuario",usuario);
+        return mv;
+    }
 
 }

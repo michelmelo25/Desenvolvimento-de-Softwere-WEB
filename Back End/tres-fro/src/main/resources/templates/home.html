@@ -27,7 +27,9 @@
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
     <a class="navbar-brand" href="/produtos">Bebidas</a>
-    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>    <a class="navbar-brand" href="/cadastro">Cadastro</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="/produto/listagem">Produtos</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>
+    <a sec:authorize="!isAuthenticated()" class="navbar-brand" href="/cadastro">Cadastro</a>
     <!-- Perfil Usuario -->
     <div class="dropdown">
         <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -178,7 +180,7 @@
                 <form method="POST" action="/usuario/login" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Login:</label>
-                        <input type="text" class="form-control" id="Email" placeholder="Login" name="username">
+                        <input type="text" class="form-control" id="usernamelogin" placeholder="Login" name="username">
                     </div>
 
                     <div class="form-group">
@@ -213,6 +215,7 @@
                     <h5 class="card-title" th:text="${produto.nome}"> </h5>
                     <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
                     <a th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('USER')" class="btn btn-outline-info">Comprar</a>
+                    <a th:href="@{/cadastro}" sec:authorize="!isAuthenticated()" class="btn btn-outline-info">Comprar</a>
                     <a th:href="@{/produto/excluir/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-danger">Excluir</a>
                     <a th:href="@{/produto/atualizar/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-secondary">Atualizar</a>
                 </div>
@@ -229,6 +232,7 @@
                     <h5 class="card-title" th:text="${produto.nome}"> </h5>
                     <p class="card-text" th:text="${'R$'+produto.presco}"> </p>
                     <a th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('USER')" class="btn btn-outline-info">Comprar</a>
+                    <a th:href="@{/cadastro}" sec:authorize="!isAuthenticated()" class="btn btn-outline-info">Comprar</a>
                     <a th:href="@{/produto/excluir/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-danger">Excluir</a>
                     <a th:href="@{/produto/atualizar/{id}(id = ${produto.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-secondary">Atualizar</a>
 

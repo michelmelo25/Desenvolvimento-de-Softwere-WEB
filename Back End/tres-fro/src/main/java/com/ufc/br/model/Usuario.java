@@ -3,6 +3,8 @@ package com.ufc.br.model;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -49,6 +51,7 @@ public class Usuario implements UserDetails {
             )
     )
     private List<Produto> historico;
+
 
     public List<Produto> getHistorico() {
         return historico;

@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Produtos</title>
+    <title>Lista Produto</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/stilos.css">
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
 
 </head>
 <body style="background: url('../../../imagens/body-bg.png')">
@@ -156,7 +160,6 @@
                         <button type="submit" class="btn btn-outline-success">Savar</button>
                     </div>
                 </form>
-                </form>
 
             </div>
 
@@ -178,8 +181,8 @@
 
                 <form method="POST" action="/usuario/login" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Login:</label>
-                        <input type="text" class="form-control" id="Email" placeholder="Login" name="username">
+                        <label for="exampleInputEmail1">E-mail:</label>
+                        <input type="text" class="form-control" id="Email" placeholder="E-mail" name="username">
                     </div>
 
                     <div class="form-group">
@@ -198,36 +201,78 @@
         </div>
     </div>
 </div>
+<br>
 
 <!-- img-fluid -->
 <div>
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
-<br>
 <!-- LINHA 1 -->
-<div class="container-fluid">
-    <div class="row" id="row1">
-        <div class="col-md-3" th:each="prod: ${todosOsProdutos}">
-                <div class="card text-center" style="height: 30rem">
-                    <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${prod.nome}+.jpg}"/>
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${prod.nome}"> </h5>
-                        <p class="card-text" th:text="${'R$'+prod.presco}"> </p>
-                        <a th:href="@{/produto/compra/addcarrinho/{id}(id = ${prod.id})}" sec:authorize="hasAnyRole('USER')" class="btn btn-outline-info">Comprar</a>
-                        <a th:href="@{/cadastro}" sec:authorize="!isAuthenticated()" class="btn btn-outline-info">Comprar</a>
-                        <a th:href="@{/produto/excluir/{id}(id = ${prod.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-danger">Excluir</a>
-                        <a th:href="@{/produto/atualizar/{id}(id = ${prod.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-secondary">Atualizar</a>                    </div>
-                </div>
-            <br>
+
+<div class="card" style="width: 98%; height: 100%; margin: 1%;">
+    <div class="card-body">
+        <div class="row" id="row1">
+            <!--<img class="card-img-top" alt="" style="height: 30rem" th:src="@{'/imagens/'+${produto.nome}+.jpg}"/>-->
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Presco</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Promocao</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--th:each="produto: ${car}"-->
+                <!--<div th:each="i: ${#numbers.sequence(1,car.size())}">-->
+                <tr th:each="i: ${#numbers.sequence(0,produtos.size()-1)}">
+                    <th scope="row" th:text="${i+1}"></th>
+                    <td th:text="${produtos.get(i).getNome()}"></td>
+                    <td th:text="${produtos.get(i).getPresco()}" id="presc"></td>
+                    <td th:text="${produtos.get(i).getTipo()}"></td>
+                    <td th:text="${produtos.get(i).getPromocao()}"></td>
+                    <td th:text="${produtos.get(i).getQtd()}"></td>
+                    <td><a th:href="@{/produto/atualizar/{id}(id = ${produtos.get(i).id})}" class="btn btn-outline-secondary">Atualizar</a></td>
+                    <td><a th:href="@{/carrinho/excluir/{id}(id = ${produtos.get(i).getId()})}">
+
+                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLT
+                    g4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctS
+                    W4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIw
+                    MDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0
+                    iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMyIDMyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bm
+                    Q6bmV3IDAgMCAzMiAzMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8Z
+                    z4KCTxnIGlkPSJ0cmFzaCI+CgkJPHBhdGggZD0iTTI5Ljk4LDYuODE4Yy0wLjA5Ni0xLjU3LTEuMzg3LTIuODE2LTIu
+                    OTgtMi44MTZoLTN2LTFWM2MwLTEuNjU3LTEuMzQ0LTMtMy0zSDExICAgIEM5LjM0MywwLDgsMS4zNDMsOCwzdjAuMDA
+                    xdjFINWMtMS41OTUsMC0yLjg4NSwxLjI0Ni0yLjk4MSwyLjgxNkgyVjh2MWMwLDEuMTA0LDAuODk2LDIsMiwybDAsMH
+                    YxN2MwLDIuMjA5LDEuNzkxLDQsNCw0aDE2ICAgIGMyLjIwOSwwLDQtMS43OTEsNC00VjExbDAsMGMxLjEwNCwwLDItM
+                    C44OTYsMi0yVjhWNi44MThIMjkuOTh6IE0xMCwzLjAwMWMwLTAuNTUzLDAuNDQ3LTEsMS0xaDEwYzAuNTUzLDAsMSww
+                    LjQ0NywxLDF2MUgxMCAgICBWMy4wMDF6IE0yNiwyOC4wMDFjMCwxLjEwMi0wLjg5OCwyLTIsMkg4Yy0xLjEwMywwLTI
+                    tMC44OTgtMi0ydi0xN2gyMFYyOC4wMDF6IE0yOCw4djFINFY4VjcuMDAxYzAtMC41NTMsMC40NDctMSwxLTFoMjIgIC
+                    AgYzAuNTUzLDAsMSwwLjQ0NywxLDFWOHoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNOSwyOC4wMDVoMmMwL
+                    jU1MywwLDEtMC40NDcsMS0xdi0xM2MwLTAuNTUzLTAuNDQ3LTEtMS0xSDljLTAuNTUzLDAtMSwwLjQ0Ny0xLDF2MTMg
+                    ICAgQzgsMjcuNTU4LDguNDQ3LDI4LjAwNSw5LDI4LjAwNXogTTksMTQuMDA0aDJ2MTNIOVYxNC4wMDR6IiBmaWxsPSI
+                    jMDAwMDAwIi8+CgkJPHBhdGggZD0iTTE1LDI4LjAwNWgyYzAuNTUzLDAsMS0wLjQ0NywxLTF2LTEzYzAtMC41NTMtMC
+                    40NDctMS0xLTFoLTJjLTAuNTUzLDAtMSwwLjQ0Ny0xLDF2MTMgICAgQzE0LDI3LjU1OCwxNC40NDcsMjguMDA1LDE1L
+                    DI4LjAwNXogTTE1LDE0LjAwNGgydjEzaC0yVjE0LjAwNHoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNMjEs
+                    MjguMDA1aDJjMC41NTMsMCwxLTAuNDQ3LDEtMXYtMTNjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtMmMtMC41NTMsMC0xLDA
+                    uNDQ3LTEsMXYxMyAgICBDMjAsMjcuNTU4LDIwLjQ0NywyOC4wMDUsMjEsMjguMDA1eiBNMjEsMTQuMDA0aDJ2MTNoLT
+                    JWMTQuMDA0eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnP
+                    go8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+
+                    CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                    </a></td>
+
+                </tr>
+                </tbody>
+            </table>
+            <!--<label th:text="${#authentication.name}"></label>-->
+
         </div>
     </div>
-    <br>
 </div>
-<br>
-
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<!--<script src="/js/util.js"></script>-->
 
 <footer class="rodape">
     <label>(88) 99582-4052</label>

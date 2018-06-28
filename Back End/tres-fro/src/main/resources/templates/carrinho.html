@@ -31,7 +31,9 @@
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
     <a class="navbar-brand" href="/produtos">Bebidas</a>
-    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>    <a class="navbar-brand" href="/cadastro">Cadastro</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="/produto/listagem">Produtos</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>
+    <a sec:authorize="!isAuthenticated()" class="navbar-brand" href="/cadastro">Cadastro</a>
     <!-- Perfil Usuario -->
     <div class="dropdown">
         <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -180,12 +182,12 @@
                 <form method="POST" action="/usuario/login" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputEmail1">E-mail:</label>
-                        <input type="text" class="form-control" id="Email" placeholder="E-mail" name="email">
+                        <input type="text" class="form-control" id="Email" placeholder="E-mail" name="username">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha:</label>
-                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="senha">
+                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="password">
                     </div>
 
                     <div class="modal-footer">
@@ -270,7 +272,7 @@
             <!--th:href="@{/produto/compra/addcarrinho/{id}(id = ${produto.id})}"-->
             <div class="col-md-12" style="text-align: right">
                 <a class="btn btn-outline-secondary" href="/produtos">Voltar</a>
-                <a th:href="@{/efetuar_compra/{user}(user = #authentication.name)}" class="btn btn-outline-success" style="" id="comprar">Comprar</a>
+                <a th:href="@{/efetuar_compra/{user}(user = ${#authentication.name})}" class="btn btn-outline-success" style="" id="comprar">Comprar</a>
             </div>
         </div>
     </div>

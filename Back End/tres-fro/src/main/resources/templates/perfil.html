@@ -31,7 +31,9 @@
     <a class="navbar-brand" href="/home">Home</a>
     <a class="navbar-brand" href="/sobre">Sobre</a>
     <a class="navbar-brand" href="/produtos">Bebidas</a>
-    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>    <a class="navbar-brand" href="/cadastro">Cadastro</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="/produto/listagem">Produtos</a>
+    <a sec:authorize="hasRole('ADMIN')" class="navbar-brand" href="#" data-target="#exampleModal" data-toggle="modal">Cadastrar Produto</a>
+    <a sec:authorize="!isAuthenticated()" class="navbar-brand" href="/cadastro">Cadastro</a>
     <!-- Perfil Usuario -->
     <div class="dropdown">
         <a class="navbar-brand" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -180,12 +182,12 @@
                 <form method="POST" action="/usuario/login" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputEmail1">E-mail:</label>
-                        <input type="text" class="form-control" id="Email" placeholder="E-mail" name="email">
+                        <input type="text" class="form-control" id="Email" placeholder="E-mail" name="username">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha:</label>
-                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="senha">
+                        <input type="password" class="form-control" id="passwordlogin" placeholder="Senha" name="password">
                     </div>
 
                     <div class="modal-footer">
@@ -218,7 +220,7 @@
                 CPF:
                 <p class="card-text" id="cpf" th:text="${usuario.getCpf()}"></p>
                 Data de Nascimento:
-                <p class="card-text" th:text="${usuario.getDataNascimento()}"></p>
+                <p class="card-text" th:text="${{usuario.dataNascimento}}"></p>
                 CEP:
                 <p class="card-text" th:text="${usuario.getCep()}"></p>
                 Bairro:
@@ -227,6 +229,9 @@
                 <p class="card-text" th:text="${usuario.getRua()}"></p>
                 Numero:
                 <p class="card-text" th:text="${usuario.getNumero()}"></p>
+                <div style="text-align: right">
+                    <a th:href="@{/usuario/atualizar/{user}(user = ${#authentication.name})}" class="btn btn-outline-secondary">Editar</a>
+                </div>
                 Historico de Colmpra:
                 <table class="table">
                     <thead class="thead-dark">
@@ -239,11 +244,13 @@
                     </thead>
                     <tbody>
                     <!--<p class="card-text" th:text="${usuario.getHistorico()}"></p>-->
+                    <div th:if="${!usuario.getHistorico().isEmpty()}">
                         <tr th:each="i: ${#numbers.sequence(0,usuario.getHistorico().size()-1)}">
                             <th scope="row" th:text="${i+1}"></th>
                             <td th:text="${usuario.getHistorico().get(i).getNome()}"></td>
                             <td th:text="${'R$'+usuario.getHistorico().get(i).getPresco()}"></td>
                         </tr>
+                    </div>
                     </tbody>
                 </table>
             </div>

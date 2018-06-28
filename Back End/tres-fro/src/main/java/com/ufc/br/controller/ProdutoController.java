@@ -104,8 +104,7 @@ public class ProdutoController {
     public  ModelAndView addCarrinho(@PathVariable Long id){
         Produto produto = produtoService.buscarProdutoPorID(id);
         carrinho.add(produto);
-        ModelAndView mv = new ModelAndView("redirect:/produto/pedido/{id}");
-        mv.addObject("carrinhoTemporario",carrinho);
+        ModelAndView mv = new ModelAndView("redirect:/produtos");
         System.out.println(carrinho.toString());
         System.out.println("\n");
         return mv;
@@ -138,7 +137,12 @@ public class ProdutoController {
         System.out.println("-----------------------");
         System.out.println(carrinho.toString());
         System.out.println("\n");
-        ModelAndView mv = new ModelAndView("redirect:/carrinho");
+        ModelAndView mv;
+        if(carrinho.isEmpty()) {
+             mv = new ModelAndView("redirect:/produtos");
+        }else{
+             mv = new ModelAndView("redirect:/carrinho");
+        }
 //        mv.addObject("carro",carrinho);
         return mv;
     }
@@ -199,4 +203,13 @@ public class ProdutoController {
         mv.addObject("produto",produto);
         return mv;
     }
+
+    @RequestMapping("/produto/listagem")
+    public ModelAndView listaProdutos(){
+        List<Produto> listaProdutos = produtoService.listarProdutos();
+        ModelAndView mv = new ModelAndView("lista-produtos");
+        mv.addObject("produtos",listaProdutos);
+        return mv;
+    }
+
 }

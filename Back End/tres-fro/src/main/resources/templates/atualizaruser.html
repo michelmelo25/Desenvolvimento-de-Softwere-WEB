@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Produtos</title>
+    <title>Editar Usuario</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/stilos.css">
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
 
 </head>
 <body style="background: url('../../../imagens/body-bg.png')">
@@ -144,7 +148,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Promocao:</label>
-                        <input type="text" class="form-control" id="promo" placeholder="promocao" name="promocao" required>
+                        <input type="text" class="form-control" id="promo1" placeholder="promocao" name="promocao"required>
                     </div>
 
                     <div class="form-group">
@@ -155,7 +159,6 @@
                         <button type="submit" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-outline-success">Savar</button>
                     </div>
-                </form>
                 </form>
 
             </div>
@@ -178,8 +181,8 @@
 
                 <form method="POST" action="/usuario/login" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Login:</label>
-                        <input type="text" class="form-control" id="Email" placeholder="Login" name="username">
+                        <label for="exampleInputEmail1">E-mail:</label>
+                        <input type="text" class="form-control" id="Email" placeholder="login" name="username">
                     </div>
 
                     <div class="form-group">
@@ -198,36 +201,90 @@
         </div>
     </div>
 </div>
+<br>
 
 <!-- img-fluid -->
 <div>
     <img src="../imagens/capa.png"  alt="Responsive image" width="100%">
 </div>
-<br>
 <!-- LINHA 1 -->
-<div class="container-fluid">
-    <div class="row" id="row1">
-        <div class="col-md-3" th:each="prod: ${todosOsProdutos}">
-                <div class="card text-center" style="height: 30rem">
-                    <img class="card-img-top" alt="" style="height: 19rem" th:src="@{'/imagens/'+${prod.nome}+.jpg}"/>
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${prod.nome}"> </h5>
-                        <p class="card-text" th:text="${'R$'+prod.presco}"> </p>
-                        <a th:href="@{/produto/compra/addcarrinho/{id}(id = ${prod.id})}" sec:authorize="hasAnyRole('USER')" class="btn btn-outline-info">Comprar</a>
-                        <a th:href="@{/cadastro}" sec:authorize="!isAuthenticated()" class="btn btn-outline-info">Comprar</a>
-                        <a th:href="@{/produto/excluir/{id}(id = ${prod.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-danger">Excluir</a>
-                        <a th:href="@{/produto/atualizar/{id}(id = ${prod.id})}" sec:authorize="hasAnyRole('ADMIN')" class="btn btn-outline-secondary">Atualizar</a>                    </div>
-                </div>
-            <br>
+<div class="card" style="width: 98%; height: 100%; margin: 1%;" >
+    <div class="card-body">
+        <div class="row" id="row2">
+            <div class="col-md-12" style="text-align: left">
+                <form method="POST" action="/usuario/cadastro" enctype="multipart/form-data" th:object="${usuario}">
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{login}">
+                    <input type="hidden" th:field="*{roles}">
+                    <input type="hidden" th:field="*{historico}">
+                    <label th:text="${usuario.senha}"></label>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nome:</label>
+                        <input type="text" class="form-control" id="nome2" placeholder="Nome" name="nome" th:field="*{nome}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">E-mail:</label>
+                        <input type="text" class="form-control" id="email2" placeholder="E-mail" name="email" th:field="*{email}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">CPF:</label>
+                        <input type="text" class="form-control" id="cpf" placeholder="CPF" name="cpf" th:field="*{cpf}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">CEP:</label>
+                        <input type="text" class="form-control" id="cep" placeholder="CEP" name="cep" th:field="*{cep}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Data de Nascimento:</label>
+                        <input type="text" class="form-control" id="datenasc" placeholder="Data Nascimento" name="dataNascimento" th:field="*{dataNascimento}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rua:</label>
+                        <input type="text" class="form-control" id="rua" placeholder="Rua" name="rua" th:field="*{rua}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Bairro:</label>
+                        <input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro" th:field="*{bairro}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Numero:</label>
+                        <input type="text" class="form-control" id="numero" placeholder="Numero" name="numero" th:field="*{numero}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Senha:</label>
+                        <input type="text" class="form-control" id="senha" placeholder="Senha" name="senha" th:field="*{senha}" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-success" id="atualizar2">Atualizar</button>
+                </form>
+            </div>
         </div>
     </div>
-    <br>
 </div>
-<br>
 
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<!--<script src="/js/util.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var $seuCampoCep = $("#cep");
+        $seuCampoCep.mask('00000-000', {reverse: false});
+
+        var $seuCampoCpf = $("#cpf");
+        $seuCampoCpf.mask('000.000.000.-00', {reverse: false});
+    });
+
+</script>
+
+
+
 
 <footer class="rodape">
     <label>(88) 99582-4052</label>
